@@ -1,34 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class PrepareAttackState : State
 {
-    Player target;
-    Enemy self;
+    protected Player target;
+    protected Enemy self;
 
-    float timer;
+    protected float timer;
+    protected bool hasRepositionned;
 
     protected override void OnEnter()
     {
         base.OnEnter();
-        timer = 0;
+
         target = stateController.player;
         self = stateController.enemy;
+
+        timer = 0;
         self.spriteRenderer.color = Color.yellow;
-        self.attackColliderWrapper.transform.LookAt(target.transform);
+        hasRepositionned = false;
     }
 
     protected override void OnUpdate()
     {
         base.OnUpdate();
+
         if (timer <= self.attackWindupTime)
         {
             timer += Time.deltaTime;
-        }
-        else
-        {
-            stateController.ChangeState(stateController.attackState);
         }
     }
 

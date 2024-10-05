@@ -10,9 +10,15 @@ public class StateController : MonoBehaviour
     public Player player;
 
     public IdleState idleState = new();
+
     public ChaseState chaseState = new();
-    public PrepareAttackState prepareAttackState = new();
-    public AttackState attackState = new();
+    public RepositionState repositionState = new();
+
+    public MeleePrepareAttackState meleePrepareAttackState = new();
+    public RangePrepareAttackState rangePrepareAttackState = new();
+    
+    public MeleeAttackState meleeAttackState = new();
+    public RangeAttackState rangeAttackState = new();
 
     private void Start()
     {
@@ -22,7 +28,7 @@ public class StateController : MonoBehaviour
 
     void Update()
     {
-        currentState.OnStateUpdate();
+        currentState?.OnStateUpdate();
     }
 
     public void ChangeState(State newState)

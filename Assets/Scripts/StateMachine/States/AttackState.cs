@@ -4,35 +4,35 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    Enemy self;
-
-    float timer = 0;
+    protected Player target;
+    protected Enemy self;
+    protected float timer = 0;
 
     protected override void OnEnter()
     {
         base.OnEnter();
-        timer = 0;
+
+        target = stateController.player;
         self = stateController.enemy;
+
         self.spriteRenderer.color = Color.red;
-        self.attackCollider.enabled = true;
+        timer = 0;    
     }
 
     protected override void OnUpdate()
     {
         base.OnUpdate();
-        if (timer <= self.attackTime)
+
+        if (timer < self.attackTime)
         {
             timer += Time.deltaTime;
         }
-        else
-        {
-            stateController.ChangeState(stateController.chaseState);
-        }
+        
     }
 
     protected override void OnExit()
     {
         base.OnExit();
-        self.attackCollider.enabled = false;
+
     }
 }

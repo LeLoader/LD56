@@ -13,18 +13,19 @@ public class Player : Character
 
     void Update()
     {
+
         float xVelocity = Input.GetAxis("Horizontal");
         float yVelocity = Input.GetAxis("Vertical");
-
-        animator.SetFloat("xVelocityAbs", Mathf.Abs(xVelocity));
-        animator.SetFloat("yVelocity", yVelocity);
-
-        if (xVelocity < 0) spriteRenderer.flipX = true;
-        else if (xVelocity > 0) spriteRenderer.flipX = false;
 
         if (canMoove)
         {
             rb.velocity = Vector2.ClampMagnitude(new Vector2(xVelocity * speed, yVelocity * speed), speed);
+
+            if (xVelocity < 0) spriteRenderer.flipX = true;
+            else if (xVelocity > 0) spriteRenderer.flipX = false;
+
+            animator.SetFloat("xVelocityAbs", Mathf.Abs(xVelocity));
+            animator.SetFloat("yVelocity", yVelocity);
         }
     }
 

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MeleePrepareAttackState : PrepareAttackState
 {
+    protected override void OnEnter()
+    {
+        base.OnEnter();
+
+        self.GetComponentInChildren<DamagePlayer>().SetDamage(self.damage);
+    }
+
     protected override void OnUpdate()
     {
         base.OnUpdate();
@@ -19,5 +26,11 @@ public class MeleePrepareAttackState : PrepareAttackState
         {
             stateController.ChangeState(stateController.meleeAttackState);
         }
+    }
+
+    protected override void OnExit()
+    {
+        base.OnExit();
+
     }
 }

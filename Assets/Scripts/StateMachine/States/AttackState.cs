@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class AttackState : State
@@ -8,15 +9,18 @@ public class AttackState : State
     protected Enemy self;
     protected float timer = 0;
 
+    protected int attackCount;
+
     protected override void OnEnter()
     {
         base.OnEnter();
 
         target = stateController.player;
         self = stateController.enemy;
+        attackCount = self.attackCount;
 
+        timer = 0;
         self.spriteRenderer.color = Color.red;
-        timer = 0;    
     }
 
     protected override void OnUpdate()

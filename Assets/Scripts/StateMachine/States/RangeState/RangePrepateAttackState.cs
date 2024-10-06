@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class RangePrepareAttackState : PrepareAttackState
 {
+    protected override void OnEnter()
+    {
+        base.OnEnter();
+
+    }
+
     protected override void OnUpdate()
     {
         base.OnUpdate();

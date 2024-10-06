@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class RangeAttackState : AttackState
 {
@@ -8,7 +9,13 @@ public class RangeAttackState : AttackState
     {
         base.OnEnter();
 
-        self.Shoot(target);
+        for (int i = 0; i < attackCount; i++)
+        {
+            Vector2 offset = target.transform.position - self.transform.position;
+            Quaternion direction = Quaternion.LookRotation(Vector3.forward, offset) * Quaternion.Euler(0, 0, 360 / attackCount * (i + 1));
+
+            self.Shoot(target, direction);
+        }
     }
 
     protected override void OnUpdate()

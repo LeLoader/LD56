@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5856517021126133173}
   - component: {fileID: 280897223636073939}
   - component: {fileID: 298031253583729092}
+  - component: {fileID: 7081670635554306775}
   m_Layer: 0
   m_Name: Prefab_Projectile
   m_TagString: Untagged
@@ -46,11 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939f7db84c05ee948bc3e6f7d5ac3903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 298031253583729092}
+  damagePlayer: {fileID: 7081670635554306775}
   spriteRenderer: {fileID: 4727828873662263946}
   speed: 10
   sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  destroyAfter: 5
+  destroyAfter: 1
 --- !u!70 &298031253583729092
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -86,6 +87,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.1, y: 0.3}
   m_Direction: 0
+--- !u!114 &7081670635554306775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702822243722940486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac60dd34c954f2f4b97c1c60d68883e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOneShot: 1
 --- !u!1 &3823355755918900378
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Food Database", menuName = "Database/Create DBFood", order = 1)]
 public class DBFood : ScriptableObject
 {
-    [SerializeField] List<Food> foodList;
+    [SerializeField] List<FoodData> foodList;
 
-    public List<Food> GetFoodList()
+    public List<FoodData> GetFoodList()
     {
         return foodList;
     }

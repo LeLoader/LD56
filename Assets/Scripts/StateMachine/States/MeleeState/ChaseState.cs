@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class ChaseState : MovementState
 {
+    protected override void OnEnter()
+    {
+        base.OnEnter();
+
+    }
+
     protected override void OnUpdate()
     {
         base.OnUpdate();

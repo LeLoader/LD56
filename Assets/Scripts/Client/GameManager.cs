@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class FoodManager : MonoBehaviour
@@ -37,7 +38,11 @@ public class FoodManager : MonoBehaviour
             {
                 Client client = Instantiate(clientPrefab, clientSpawn, Quaternion.identity).GetComponent<Client>();
                 clients.Enqueue(client);
-                client.walkQueue.Enqueue(queuePositions[clients.IndexOf(client)]);
+                foreach(Client clientq in clients)
+                {
+                    clientq.walkQueue.Enqueue(queuePositions[clients.IndexOf(client)]);
+                }
+
                 spawnCountdown = spawnCooldown;
             }
             else

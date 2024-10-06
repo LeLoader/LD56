@@ -152,6 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodDatabase: {fileID: 11400000, guid: fb07e145c01813b4fa32a5642e60650d, type: 2}
+  maxClientInQueue: 2
+  queuePositions:
+  - {x: 5, y: 0}
+  clientSpawn: {x: 15, y: 0}
+  spawnCooldown: 2
+  clientPrefab: {fileID: 477700861197828796, guid: d9e54e826e42c634ab938047d8196f8b, type: 3}
 --- !u!4 &376422616
 Transform:
   m_ObjectHideFlags: 0
@@ -479,10 +485,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5708872815460814268, guid: a8815cf862dc28b4eba298d188fb5f24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6145571674899063134, guid: a8815cf862dc28b4eba298d188fb5f24, type: 3}
-      propertyPath: canMoove
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

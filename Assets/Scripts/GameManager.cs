@@ -104,7 +104,6 @@ public class GameManager : MonoBehaviour
         SpawnFood(request);
         OnUpdateRequest.Invoke(request);
         orderCount++;
-        Debug.Log(orderCount);
     }
 
     void SpawnFood(Request request)

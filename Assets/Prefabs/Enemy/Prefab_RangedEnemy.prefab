@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 5499063858449616163}
   - component: {fileID: 9092749510627721339}
   - component: {fileID: 7849265770434463388}
-  - component: {fileID: 807168761299893235}
+  - component: {fileID: 7562206682473111557}
   m_Layer: 0
   m_Name: Prefab_RangedEnemy
   m_TagString: Enemy
@@ -193,20 +193,11 @@ MonoBehaviour:
   baseLife: 6
   life: 0
   bonusLife: 0
-  collisionCollider: {fileID: 807168761299893235}
+  collisionCollider: {fileID: 7562206682473111557}
   spriteRenderer: {fileID: 4250915680195631971}
   animator: {fileID: 0}
   aggroZone: {fileID: 2509755009677172875}
   stateController: {fileID: 7849265770434463388}
-  enemyName:
-    m_TableReference:
-      m_TableCollectionName: GUID:e381f9783e8471b4f8c0070971c83416
-    m_TableEntryReference:
-      m_KeyId: 252399349018624
-      m_Key: 
-    m_FallbackState: 0
-    m_WaitForCompletion: 0
-    m_LocalVariables: []
   aggroRange: 5
   foodData: {fileID: 0}
   IsMelee: 0
@@ -222,9 +213,6 @@ MonoBehaviour:
   attackTime: 0.25
   hasRandomOffset: 0
   randomOffset: 0
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &7849265770434463388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 9092749510627721339}
   player: {fileID: 0}
---- !u!58 &807168761299893235
-CircleCollider2D:
+--- !u!70 &7562206682473111557
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -271,6 +259,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Offset: {x: 0, y: -0.04212427}
+  m_Size: {x: 0.4804682, y: 0.91575146}
+  m_Direction: 0

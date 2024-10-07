@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Strawberry
   sprite: {fileID: 21300000, guid: e1ea20264f7572b43909bba2b9a92df1, type: 3}
-  spawnPosition: {x: 58, y: 5}
+  spawnPosition: {x: 55, y: 5}
+  idlePose: {fileID: 0}
+  frontWalkClip: {fileID: 0}
+  sideWalkClip: {fileID: 0}
+  backWalkClip: {fileID: 0}
   baseLife: 6
   speed: 6
   IsMelee: 0

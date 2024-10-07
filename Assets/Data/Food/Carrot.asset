@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Carrot
   sprite: {fileID: 21300000, guid: 2dafb5208640b104f99f641923d766c4, type: 3}
-  spawnPosition: {x: 0, y: 0}
+  spawnPosition: {x: 60, y: -4}
   idlePose: {fileID: 21300000, guid: d29b62067b0dd7d44a241588d684aecf, type: 3}
   frontWalkClip: {fileID: 7400000, guid: 517529b51427aeb419f1139656206886, type: 2}
   sideWalkClip: {fileID: 7400000, guid: 239a3ed89a0ab614b81510f6cec8ce12, type: 2}
@@ -28,7 +28,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   attackCount: 2
   attackWindupTime: 1
-  adjustAttackerColliderTime: 0.1
+  adjustAttackerColliderTime: 0.2
   attackTime: 0.5
   hasRandomOffset: 0
   randomOffset: 0

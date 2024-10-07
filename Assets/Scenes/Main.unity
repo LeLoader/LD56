@@ -1497,7 +1497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 23.846}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -200.09998, y: -290.8}
+  m_AnchoredPosition: {x: -200.10004, y: -290.8}
   m_SizeDelta: {x: 930.12, y: 513.62}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &602559967
@@ -3547,6 +3547,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1641880661705110779, guid: a8815cf862dc28b4eba298d188fb5f24, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1664119644770378551, guid: a8815cf862dc28b4eba298d188fb5f24, type: 3}
       propertyPath: m_Name
       value: Player

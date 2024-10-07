@@ -52,7 +52,6 @@ MonoBehaviour:
   speed: 10
   decreaseSpeed: 1
   decreaseFactor: 30
-  sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   destroyAfter: 10
 --- !u!114 &7081670635554306775
 MonoBehaviour:
@@ -130,7 +129,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5856517021126133173}

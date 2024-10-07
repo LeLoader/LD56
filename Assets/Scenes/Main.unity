@@ -937,11 +937,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b01da75a2ae1d8e4693d2caf36eb9011, type: 2}
     - target: {fileID: 9092749510627721339, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
       propertyPath: attackRange
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9092749510627721339, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
       propertyPath: attackRangeInterval
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1805,6 +1805,8 @@ MonoBehaviour:
   - {x: 7.49, y: -10}
   clientSpawn: {x: 15, y: 0}
   player: {fileID: 0}
+  bonusEffect: []
+  malusEffect: []
   spawnCooldown: 2
   clientPrefab: {fileID: 477700861197828796, guid: d9e54e826e42c634ab938047d8196f8b, type: 3}
   meleeEnemy_Prefab: {fileID: 6781736468396745702, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}

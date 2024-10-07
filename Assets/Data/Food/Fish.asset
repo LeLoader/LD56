@@ -15,9 +15,9 @@ MonoBehaviour:
   foodName: Fish
   sprite: {fileID: 21300000, guid: 2c3e85a497dd4fe48bbdade9cf5158b7, type: 3}
   spawnPosition: {x: -47, y: 0}
-  idlePose: {fileID: 0}
+  idlePose: {fileID: 21300000, guid: 3cb0cac3e5a468248bba6b729ec21978, type: 3}
   frontWalkClip: {fileID: 0}
-  sideWalkClip: {fileID: 0}
+  sideWalkClip: {fileID: 7400000, guid: 45cdb2e3c7ca7cd44a398779792c0b77, type: 2}
   backWalkClip: {fileID: 0}
   baseLife: 10
   speed: 4

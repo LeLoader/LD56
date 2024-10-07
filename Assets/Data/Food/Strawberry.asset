@@ -15,10 +15,10 @@ MonoBehaviour:
   foodName: Strawberry
   sprite: {fileID: 21300000, guid: e1ea20264f7572b43909bba2b9a92df1, type: 3}
   spawnPosition: {x: 55, y: 5}
-  idlePose: {fileID: 0}
-  frontWalkClip: {fileID: 0}
-  sideWalkClip: {fileID: 0}
-  backWalkClip: {fileID: 0}
+  idlePose: {fileID: 21300000, guid: 07c2e04c65317f043a0d154c86098d36, type: 3}
+  frontWalkClip: {fileID: 7400000, guid: ecd5207d9d836944ca496907fd31be53, type: 2}
+  sideWalkClip: {fileID: 7400000, guid: 900250cf7f10269468c5e18d9355d419, type: 2}
+  backWalkClip: {fileID: 7400000, guid: b7627f43729509b4fbff4a6aa56ad535, type: 2}
   baseLife: 6
   speed: 5
   IsMelee: 0

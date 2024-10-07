@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 48b59985f4eb895479840a61151b771a
   - enabled: 1
-    path: Assets/Scenes/Kitchen.unity
+    path: Assets/Scenes/Main.unity
     guid: 4e1a88e8688816a4b805847f1951d104
   - enabled: 1
     path: Assets/Scenes/Garden.unity

@@ -84,14 +84,14 @@ public class GameManager : MonoBehaviour
 
     void OnEnemyDeath(Enemy enemy)
     {
-        if (enemy.foodData != null && currentRequest != null)
+        if (enemy.foodData != null && currentRequest.recipe != null)
         {
             if (currentRequest.recipe.ContainsKey(enemy.foodData))
             {
                 currentRequest.recipe[enemy.foodData] = FoodState.Killed;
             }
-        }
-        OnUpdateRequest.Invoke(currentRequest);
+            OnUpdateRequest.Invoke(currentRequest);
+        }      
     }
 
     void OnRequestFullfilled(Request request)

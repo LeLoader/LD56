@@ -14,15 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Mushroom
   sprite: {fileID: 21300000, guid: 14e525a668e042a4e80301165532d9a3, type: 3}
-  spawnPosition: {x: 0, y: 0}
+  spawnPosition: {x: -60, y: -5}
+  idlePose: {fileID: 0}
+  frontWalkClip: {fileID: 0}
+  sideWalkClip: {fileID: 0}
+  backWalkClip: {fileID: 0}
   baseLife: 7
-  speed: 4
+  speed: 2
   IsMelee: 0
   damage: 1
-  attackRange: 10
+  attackRange: 5
   attackRangeInterval: 1
   projectilePrefab: {fileID: 1702822243722940486, guid: e04fa4d0027cda143b154a03501fedd5, type: 3}
-  attackCount: 15
+  attackCount: 20
   attackWindupTime: 1
   adjustAttackerColliderTime: 0.75
   attackTime: 0.5

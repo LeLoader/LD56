@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RollingPin
   m_EditorClassIdentifier: 
   weaponName: Rolling Pin
-  cooldown: 1
+  cooldown: 1.5
   attackTime: 0.2
   damage: 4
   sprite: {fileID: 0}

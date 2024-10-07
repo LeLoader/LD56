@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939f7db84c05ee948bc3e6f7d5ac3903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageComponent: {fileID: 0}
+  damageComponent: {fileID: 7081670635554306775}
   spriteRenderer: {fileID: 4727828873662263946}
   speed: 10
   decreaseSpeed: 0

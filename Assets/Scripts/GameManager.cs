@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     void OnEnemyDeath(Enemy enemy)
     {
-        if (enemy.foodData != null)
+        if (enemy.foodData != null && currentRequest != null)
         {
             if (currentRequest.recipe.ContainsKey(enemy.foodData))
             {

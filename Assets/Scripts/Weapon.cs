@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +7,18 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] 
-    WeaponData weaponData;
+    public WeaponData weaponData;
     [SerializeField]
     Collider2D attackCollider;
+    [SerializeField]
+    Player player;
 
     float cooldownTimer;
     float attackTimer;
     Damage damageComponent;
-    
+
+    public static event Action<WeaponData> OnUpdateWeapon;
+
     void Start()
     {
         if(weaponData == null)
@@ -39,8 +44,31 @@ public class Weapon : MonoBehaviour
 
     void Attack()
     {
+        player.IsAttacking = true;
         attackCollider.enabled = true;
         StartCoroutine(StopAttack(attackTimer));
+    }
+
+    public void SetWeapon(WeaponData weaponData)
+    {
+        this.weaponData = weaponData;
+        if(weaponData.weaponName == "rollingpin")
+        {
+            player.spriteRenderer.sprite = player.spriteRollingpin;
+            player.animator.runtimeAnimatorController = player.animatorRollingpin;
+        }
+        if (weaponData.weaponName == "pan")
+        {
+            player.spriteRenderer.sprite = player.spritePan;
+            player.animator.runtimeAnimatorController = player.animatorPan;
+
+        }
+        if (weaponData.weaponName == "knife")
+        {
+            player.spriteRenderer.sprite = player.spriteKnife;
+            player.animator.runtimeAnimatorController = player.animatorKnife;
+        }
+        OnUpdateWeapon.Invoke(weaponData);
     }
 
     IEnumerator StopAttack(float afterTime)
@@ -52,6 +80,7 @@ public class Weapon : MonoBehaviour
             yield return null;
         }
         attackCollider.enabled = false;
+        player.IsAttacking = false;
         cooldownTimer = weaponData.cooldown;
     }
 

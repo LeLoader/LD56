@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +27,30 @@ public class UI : MonoBehaviour
     [SerializeField]
     GameObject food_prefab;
 
+    [Header("Weapon")]
+    [SerializeField]
+    Image weaponUI;
+    [SerializeField]
+    GameObject knife;
+    [SerializeField]
+    GameObject pan;
+
+    [Header("Menu")]
+    [SerializeField]
+    GameObject menu;
+    [SerializeField]
+    GameObject deathScreen;
+
+    public static event Action OnRetry;
 
     void Awake()
     {
         Character.OnUpdateHealth += UpdateHealth;
         GameManager.OnUpdateRequest += UpdateFood;
+        Weapon.OnUpdateWeapon += UpdateWeapon;
+        Player.ToggleMenu += ToggleMenu;
+        Character.OnDeathh += ShowDeathScreen;
+        
     }
 
     void UpdateHealth(Character character)
@@ -90,5 +110,49 @@ public class UI : MonoBehaviour
                 image.color = new Color(0.3f, 0.3f, 0.3f);
             }      
         }
+    }
+
+    public void AddWeapon(WeaponData weapon)
+    {
+        if (weapon.weaponName == "knife")
+        {
+            knife.SetActive(true);
+        }
+        else if (weapon.weaponName == "pan")
+        {
+            pan.SetActive(true);
+        }
+    }
+
+    private void UpdateWeapon(WeaponData weapon)
+    {
+        weaponUI.sprite = weapon.sprite;
+    }
+
+    void ToggleMenu()
+    {
+        if (menu.activeSelf)
+        {
+            menu.SetActive(false);
+        }
+        else
+        {
+            menu.SetActive(true);
+        }
+    }
+
+    void ShowDeathScreen(Character character)
+    {
+        if (character.CompareTag("Player"))
+        {
+            deathScreen.SetActive(true);
+        }
+    }
+
+    public void Retry()
+    {
+        deathScreen.SetActive(false);
+        menu.SetActive(false);
+        OnRetry.Invoke();
     }
 }

@@ -20,7 +20,6 @@ public class PrepareAttackState : State
 
         timer = 0;
         hasRepositionned = false;
-        self.spriteRenderer.color = Color.yellow;
     }
 
     protected override void OnUpdate()

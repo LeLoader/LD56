@@ -1,9 +1,21 @@
+using System;
+using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Character
 {
-   
-    public bool canMoove = true;
+    public bool CanMoove = true;
+
+    public AnimatorController animatorRollingpin;
+    public AnimatorController animatorPan;
+    public AnimatorController animatorKnife;
+    public Sprite spriteRollingpin;
+    public Sprite spritePan;
+    public Sprite spriteKnife;
+
+    public static event Action ToggleMenu;
 
     protected override void Start()
     {
@@ -18,16 +30,14 @@ public class Player : Character
         float xVelocity = Input.GetAxis("Horizontal");
         float yVelocity = Input.GetAxis("Vertical");
 
-        if (canMoove)
+        if (CanMoove)
         {
             rb.velocity = Vector2.ClampMagnitude(new Vector2(xVelocity * speed, yVelocity * speed), speed);
         }
-    }
 
-    protected override void OnDeath()
-    {
-        base.OnDeath();
-
-        Debug.Log("Player dead");
-    }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleMenu.Invoke();
+        }
+    } 
 }

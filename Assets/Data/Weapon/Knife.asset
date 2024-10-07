@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c5721e5259e784987faaf589c92485, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  weaponName: Knife
+  weaponName: knife
   cooldown: 0.5
   attackTime: 0.2
   damage: 3
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3b32b49b7afc6d8448452c0498f6f2ed, type: 3}

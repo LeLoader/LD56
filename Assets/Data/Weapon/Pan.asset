@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c5721e5259e784987faaf589c92485, type: 3}
   m_Name: Pan
   m_EditorClassIdentifier: 
-  weaponName: Pan
+  weaponName: pan
   cooldown: 2
   attackTime: 0.2
   damage: 6
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: fb305ab44fc125d4aa51b7e1e3e5aba6, type: 3}

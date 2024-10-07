@@ -20,7 +20,7 @@ public class AttackState : State
         attackCount = self.attackCount;
 
         timer = 0;
-        self.spriteRenderer.color = Color.red;
+        self.IsAttacking = true;
     }
 
     protected override void OnUpdate()
@@ -38,5 +38,7 @@ public class AttackState : State
     {
         base.OnExit();
 
+
+        self.IsAttacking = false;
     }
 }

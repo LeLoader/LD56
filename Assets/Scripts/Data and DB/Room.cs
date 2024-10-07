@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
     public RoomData Init(Player player, RoomData oldRoom = null)
     {
         this.player = player;
-        player.canMoove = true;
+        player.CanMoove = true;
 
         if (!roomData.isCameraFixed)
         {

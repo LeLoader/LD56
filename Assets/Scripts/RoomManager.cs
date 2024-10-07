@@ -12,12 +12,16 @@ public class RoomManager : MonoBehaviour
     Player player;
 
     [SerializeField]
+    Room kitchenRoom;
+
+    [SerializeField]
     Room currentRoom;
 
     private void Awake()
     {
         RoomEntryPoint.OnPlayerChangeRoom += LoadRoom;
         rooms = FindObjectsByType<Room>(FindObjectsSortMode.None);
+        UI.OnRetry += Retry;
     }
 
     void LoadRoom(Room room)
@@ -54,5 +58,10 @@ public class RoomManager : MonoBehaviour
         {
             currentRoom.camera.Follow = player.transform;
         }
+    }
+
+    void Retry()
+    {
+        LoadRoom(kitchenRoom);
     }
 }

@@ -108,66 +108,69 @@ public class GameManager : MonoBehaviour
     private void GiveRandomEffect()
     {
         float randomRoll = Random.Range(0f, 1f);
-
-        if (orderCount % 3 == 0)
+        if (orderCount != 0)
         {
-            if (randomRoll < 0.1) // new weapon
+            if (orderCount % 3 == 0)
             {
-                player.ModifyBaseLife(player.baseLife - 1);
-            }
-            else if (0.1 <= randomRoll && randomRoll < 0.2)
-            {
-                player.AddLife(-(player.GetLife() / 2));
-            }
-            else if (0.2 <= randomRoll && randomRoll < 0.5)
-            {
-                foreach(Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None)){
-                    enemy.AddLife(1);
-                }
-            }
-            else if (0.5 <= randomRoll && randomRoll < 0.8)
-            {
-                player.SetSpeed(player.GetSpeed() - 2);
-            }
-            else
-            {
-                foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+                if (randomRoll < 0.1) // new weapon
                 {
-                    enemy.AddLife(2);
+                    player.ModifyBaseLife(player.baseLife - 1);
                 }
-            }
-        }
-        else
-        {
-            if (randomRoll < 0.4) // new weapon
-            {
-                if (weaponToUnlock.Count == 2)
+                else if (0.1 <= randomRoll && randomRoll < 0.2)
                 {
-                    int randomIndex = (int)Time.time % 2;
-                    cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[randomIndex]);
-                    weaponToUnlock.RemoveAt(randomIndex);
+                    player.AddLife(-(player.GetLife() / 2));
                 }
-                else if (weaponToUnlock.Count == 1)
+                else if (0.2 <= randomRoll && randomRoll < 0.5)
                 {
-                    cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[0]);
+                    foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+                    {
+                        enemy.AddLife(1);
+                    }
+                }
+                else if (0.5 <= randomRoll && randomRoll < 0.8)
+                {
+                    player.SetSpeed(player.GetSpeed() - 2);
                 }
                 else
                 {
-                    player.SetSpeed(player.GetSpeed() + 2);
+                    foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+                    {
+                        enemy.AddLife(2);
+                    }
                 }
-            }
-            else if (0.4 <= randomRoll && randomRoll < 0.5)
-            {
-                player.ModifyBaseLife(player.baseLife + 2);
-                player.AddLife(2);
-            }
-            else if (0.5 <= randomRoll && randomRoll < 0.8)
-            {
-                player.AddBonusLife(2);
             }
             else
             {
-                player.speed += 2;
+                if (randomRoll < 0.4) // new weapon
+                {
+                    if (weaponToUnlock.Count == 2)
+                    {
+                        int randomIndex = (int)Time.time % 2;
+                        cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[randomIndex]);
+                        weaponToUnlock.RemoveAt(randomIndex);
+                    }
+                    else if (weaponToUnlock.Count == 1)
+                    {
+                        cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[0]);
+                    }
+                    else
+                    {
+                        player.SetSpeed(player.GetSpeed() + 2);
+                    }
+                }
+                else if (0.4 <= randomRoll && randomRoll < 0.5)
+                {
+                    player.ModifyBaseLife(player.baseLife + 2);
+                    player.AddLife(2);
+                }
+                else if (0.5 <= randomRoll && randomRoll < 0.8)
+                {
+                    player.AddBonusLife(2);
+                }
+                else
+                {
+                    player.speed += 2;
+                }
             }
         }
     }
@@ -250,15 +253,6 @@ public class GameManager : MonoBehaviour
         weaponToUnlock = weaponToUnlockImmuable.ToList();
         orderCount = 0;
         clients.Clear();
-        foreach (Client client in FindObjectsByType<Client>(FindObjectsSortMode.None))
-        {
-            Destroy(client.gameObject);
-        }
-        foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
-        {
-            Destroy(enemy);
-        }
-        
         currentRequest = null; 
     }
 }

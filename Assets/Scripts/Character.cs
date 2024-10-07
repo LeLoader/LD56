@@ -23,7 +23,7 @@ public class Character : MonoBehaviour
 
     public bool IsAttacking = false;
 
-    public static event Action<Character> OnDeathh;
+    public static event Action<Character> OnPlayerDeath;
     public static event Action<Character> OnUpdateHealth;
 
     protected virtual void Start()
@@ -89,7 +89,7 @@ public class Character : MonoBehaviour
 
         if (life <= 0)
         {
-            OnDeath();
+            OnDeath(this);
         }
         StartCoroutine(RedFlash(this));
     }
@@ -117,7 +117,7 @@ public class Character : MonoBehaviour
 
         if (life <= 0)
         {
-            OnDeath();
+            OnDeath(this);
         }
     }
 
@@ -148,10 +148,21 @@ public class Character : MonoBehaviour
         OnUpdateHealth.Invoke(character);
     }
 
-    protected virtual void OnDeath()
+    protected virtual void OnDeath(Character character)
     {
-        speed = 0;
-        OnDeathh.Invoke(this);
+        if (character.CompareTag("Player"))
+        {
+            speed = 0;
+            foreach (Client client in FindObjectsByType<Client>(FindObjectsSortMode.None))
+            {
+                Destroy(client.gameObject);
+            }
+            foreach (Enemy enemy in FindObjectsByType<Enemy>(FindObjectsSortMode.None))
+            {
+                Destroy(enemy.gameObject);
+            }
+            OnPlayerDeath.Invoke(this);
+        }
     }
 
     void Retry()

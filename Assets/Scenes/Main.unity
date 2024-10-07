@@ -1736,6 +1736,7 @@ MonoBehaviour:
   clientPrefab: {fileID: 477700861197828796, guid: d9e54e826e42c634ab938047d8196f8b, type: 3}
   meleeEnemy_Prefab: {fileID: 6781736468396745702, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}
   rangedEnemy_Prefab: {fileID: 6781736468396745702, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
+  weaponToUnlockImmuable: []
   weaponToUnlock: []
   cycleWeapon: {fileID: 0}
 --- !u!4 &697706116
@@ -3173,7 +3174,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1014152112}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 998861949}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: Retry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1014152112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3380,6 +3393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms: []
   player: {fileID: 1870254815}
+  kitchenRoom: {fileID: 0}
   currentRoom: {fileID: 1256122545}
 --- !u!4 &1093375576
 Transform:

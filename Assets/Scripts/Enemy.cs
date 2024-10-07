@@ -126,9 +126,9 @@ public class Enemy : Character
         instance.GetComponent<Projectile>().damageComponent.SetDamage(damage);
     }
 
-    protected override void OnDeath()
+    protected override void OnDeath(Character character)
     {
-        base.OnDeath();
+        base.OnDeath(this);
         OnEnemyDeath.Invoke(this);
         Destroy(gameObject);
     }

@@ -49,8 +49,7 @@ public class UI : MonoBehaviour
         GameManager.OnUpdateRequest += UpdateFood;
         Weapon.OnUpdateWeapon += UpdateWeapon;
         Player.ToggleMenu += ToggleMenu;
-        Character.OnDeathh += ShowDeathScreen;
-        
+        Character.OnPlayerDeath += ShowDeathScreen;
     }
 
     void UpdateHealth(Character character)

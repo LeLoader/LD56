@@ -53,6 +53,7 @@ MonoBehaviour:
   ingredientPrefab: {fileID: 6962828956329487457, guid: 9f7715b218fe5bb438152b6c8be43cb0, type: 3}
   animator: {fileID: 2424828620664491640}
   rb: {fileID: 9050997470461162504}
+  spriteRenderer: {fileID: 5003536557821251632}
   targetPos: {x: 7.5, y: -1}
   speed: 1
   IsPlayerNearby: 0

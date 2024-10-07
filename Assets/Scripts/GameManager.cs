@@ -24,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Effects")]
     [SerializeField]
-    Dictionary<Effect, float> bonusEffect;
+    List<Effect> bonusEffect;
     [SerializeField]
-    Dictionary<Effect, float> malusEffect;
+    List<Effect> malusEffect;
     Effect nextEffect;
 
     [SerializeField]
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         Effect effect = new();
         if (orderCount % 3 == 0)
         {
-            foreach (KeyValuePair<Effect, float> kv in bonusEffect)
+            foreach (Effect localeffect in bonusEffect)
             {
 
             }
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         else
         {
             // Bonus
-            foreach (KeyValuePair<Effect, float> kv in bonusEffect)
+            foreach (Effect localeffect in bonusEffect)
             {
 
             }

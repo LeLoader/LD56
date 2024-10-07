@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5499063858449616163, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3e56d09bd2101c2478656bc2cdbde655, type: 2}
     - target: {fileID: 6781736468396745702, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}
       propertyPath: m_Name
       value: Prefab_MeleeEnemy
@@ -478,6 +482,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 9092749510627721339, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1027677253}
     - target: {fileID: 9092749510627721339, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}
       propertyPath: foodData
       value: 
@@ -1923,6 +1931,11 @@ PolygonCollider2D:
       - {x: 0.06311719, y: -1.9394408}
       - {x: -1.6060382, y: -1.7957369}
   m_UseDelaunayMesh: 0
+--- !u!95 &1027677253 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5499063858449616163, guid: 6ceebacb6d7cf264086d01ba7206823e, type: 3}
+  m_PrefabInstance: {fileID: 270207251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1031342413
 PrefabInstance:
   m_ObjectHideFlags: 0

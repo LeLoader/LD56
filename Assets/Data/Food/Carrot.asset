@@ -15,8 +15,8 @@ MonoBehaviour:
   foodName: Carrot
   sprite: {fileID: 21300000, guid: 2dafb5208640b104f99f641923d766c4, type: 3}
   spawnPosition: {x: 0, y: 0}
-  baseLife: 5
-  speed: 2
+  baseLife: 10
+  speed: 4
   IsMelee: 1
   damage: 2
   attackRange: 2.41

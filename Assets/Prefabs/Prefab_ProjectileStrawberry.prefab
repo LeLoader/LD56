@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939f7db84c05ee948bc3e6f7d5ac3903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePlayer: {fileID: 7081670635554306775}
+  damageComponent: {fileID: 0}
   spriteRenderer: {fileID: 4727828873662263946}
   speed: 10
+  decreaseSpeed: 0
+  decreaseFactor: 20
   sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
   destroyAfter: 1
 --- !u!70 &298031253583729092
@@ -84,8 +86,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.1, y: 0.3}
+  m_Offset: {x: 0, y: -0.0012512058}
+  m_Size: {x: 0.04517361, y: 0.14735368}
   m_Direction: 0
 --- !u!114 &7081670635554306775
 MonoBehaviour:
@@ -100,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneShot: 1
+  damageEnemy: 0
 --- !u!1 &3823355755918900378
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 500
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b81b4fcc9e534e4b928c2be7c278515, type: 3}
   m_Color: {r: 1, g: 0.8534628, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

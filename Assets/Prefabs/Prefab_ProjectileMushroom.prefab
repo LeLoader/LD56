@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939f7db84c05ee948bc3e6f7d5ac3903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePlayer: {fileID: 7081670635554306775}
+  damageComponent: {fileID: 0}
   spriteRenderer: {fileID: 4727828873662263946}
   speed: 10
   decreaseSpeed: 1
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneShot: 1
+  damageEnemy: 0
 --- !u!58 &4250491447455025544
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -99,9 +100,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.009137273, y: 0.0029634312}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.039597027
 --- !u!1 &3823355755918900378
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 500
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0336f8e9d4fe64742a1d086ebb51a574, type: 3}
   m_Color: {r: 1, g: 0.8534628, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

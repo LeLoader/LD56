@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,8 +21,12 @@ public class Client : MonoBehaviour
 
     public Queue<Vector2> walkQueue = new();
 
+    [SerializeField]
     Request request;
-    bool IsFirstCustomer;
+
+    [SerializeField]
+    bool IsPlayerNearby;
+
     bool HasReachedTargetPos;
 
     public static event Action<Client> OnNewRequest;
@@ -34,6 +39,11 @@ public class Client : MonoBehaviour
         {
             Walk(walkQueue.Peek());
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && HasReachedTargetPos && IsPlayerNearby)
+        {
+            OnRequestFullfilled.Invoke(request);
+        }
     }
 
     void Walk(Vector2 destination)
@@ -41,10 +51,16 @@ public class Client : MonoBehaviour
         if (Vector2.Distance(transform.position, destination) < 0.1f)
         {
             walkQueue.Dequeue();
+
             if (Vector2.Distance(transform.position, targetPos) < 0.1f)
             {
-                HasReachedTargetPos = true;
                 OnNewRequest.Invoke(this);
+                HasReachedTargetPos = true;
+            }
+
+            if(HasReachedTargetPos && request == null)
+            {
+                Destroy(gameObject);
             }
         }
         else
@@ -56,13 +72,32 @@ public class Client : MonoBehaviour
     public void SetRequest(Request request)
     {
         this.request = request;
-        foreach (FoodData ingredient in request.recipe)
+        if (request != null)
         {
-            GameObject ingredientInstance = Instantiate(ingredientPrefab, requestWidget.transform);
+            foreach (FoodData ingredient in request.recipe)
+            {
+                GameObject ingredientInstance = Instantiate(ingredientPrefab, requestWidget.transform);
 
-            Image image = ingredientInstance.GetComponent<Image>();
-            image.sprite = ingredient.sprite;
-            image.color = new Color(0.3f, 0.3f, 0.3f);
+                Image image = ingredientInstance.GetComponentsInChildren<Image>().First(component => component.gameObject != ingredientInstance);
+                image.sprite = ingredient.sprite;
+                image.color = new Color(0.3f, 0.3f, 0.3f);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Player>())
+        {
+            IsPlayerNearby = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Player>())
+        {
+            IsPlayerNearby = false;
         }
     }
 }

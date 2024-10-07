@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-public class FoodManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] 
     DBFood foodDatabase;
@@ -12,9 +13,13 @@ public class FoodManager : MonoBehaviour
     [SerializeField]
     List<Vector2> queuePositions;
     [SerializeField]
+    List<Vector2> afterQueuePositions;
+    [SerializeField]
     Vector2 clientSpawn;
 
     public static int orderCount = 0;
+
+    [SerializeField]
     Queue<Client> clients = new();
 
     [SerializeField]
@@ -38,9 +43,10 @@ public class FoodManager : MonoBehaviour
             {
                 Client client = Instantiate(clientPrefab, clientSpawn, Quaternion.identity).GetComponent<Client>();
                 clients.Enqueue(client);
-                foreach(Client clientq in clients)
+                foreach(Client clientTemp in clients)
                 {
-                    clientq.walkQueue.Enqueue(queuePositions[clients.IndexOf(client)]);
+                    int nextPosIndex = (clients.Count - 1) - clients.IndexOf(clientTemp);
+                    clientTemp.walkQueue.Enqueue(queuePositions[nextPosIndex]);
                 }
 
                 spawnCountdown = spawnCooldown;
@@ -54,13 +60,20 @@ public class FoodManager : MonoBehaviour
 
     void OnRequestFullfilled(Request request)
     {
-        clients.Dequeue(); //Set position to go away
+        Client client = clients.Dequeue();
+        client.SetRequest(null);
+        //Anim happy
+        foreach (Vector2 destination in afterQueuePositions)
+        {
+            client.walkQueue.Enqueue(destination);
+        }
     }
 
     void OnNewClient(Client client)
     {
         client.SetRequest(CreateDish());
         orderCount++;
+        Debug.Log(orderCount);
     }
 
     Request CreateDish()
@@ -103,5 +116,14 @@ public class FoodManager : MonoBehaviour
         }
 
         return new Request(ingredients);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Handles.color = Color.red;
+        foreach(Vector2 position in queuePositions)
+        {
+            Handles.DrawWireDisc(position, Vector3.forward, 0.5f);
+        }
     }
 }

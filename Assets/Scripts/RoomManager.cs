@@ -7,50 +7,52 @@ using UnityEngine.SceneManagement;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField]
-    DBRoom roomDatabase;
-    [SerializeField]
-    RoomData startRoom;
+    Room[] rooms;
     [SerializeField]
     Player player;
 
-    RoomData currentRoom;
+    [SerializeField]
+    Room currentRoom;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(player.gameObject);
-        RoomEntryPoint.OnPlayerChangeRoom += LoadScene;
-        SceneManager.sceneLoaded += InitScene;
+        RoomEntryPoint.OnPlayerChangeRoom += LoadRoom;
+        rooms = FindObjectsByType<Room>(FindObjectsSortMode.None);
     }
 
-    public void StartGame()
+    void LoadRoom(Room room)
     {
-        LoadScene(startRoom);
-        player.canMoove = true;
-    }
+        Vector2 newSpawnPosition = Vector2.zero;
 
-    void LoadScene(RoomData room)
-    {
-        SceneManager.LoadScene(room.sceneName);
-    }
-
-    void InitScene(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        if (currentRoom == null)
+        if (currentRoom != null)
         {
-            GameObject[] gos = SceneManager.GetActiveScene().GetRootGameObjects();
-            foreach (GameObject go in gos)
+            currentRoom.camera.Priority = 0;
+
+            foreach (RoomEntryPoint entryPoint in room.spawnPoints)
             {
-                if (go.TryGetComponent<Room>(out Room newRoom))
+                if (entryPoint.to == currentRoom)
                 {
-                    currentRoom = newRoom.Init(player);
-                    return;
+                    newSpawnPosition = entryPoint.transform.position;
+                    break;
                 }
             }
+
+            player.transform.position = newSpawnPosition;
         }
         else
         {
-            currentRoom = FindObjectOfType<Room>().Init(player, currentRoom);
+            player.transform.position = Vector2.zero;
+        }
+        
+        currentRoom = room;
+        currentRoom.camera.Priority = 1;
+        if (currentRoom.roomData.isCameraFixed)
+        {
+            currentRoom.camera.Follow = null;
+        }
+        else
+        {
+            currentRoom.camera.Follow = player.transform;
         }
     }
 }

@@ -8,11 +8,11 @@ using UnityEngine;
 public class RoomEntryPoint : MonoBehaviour
 {
     [SerializeField]
-    public RoomData to;
+    public Room to;
 
     bool playerInCollider;
 
-    public static event Action<RoomData> OnPlayerChangeRoom;
+    public static event Action<Room> OnPlayerChangeRoom;
 
     private void Awake()
     {

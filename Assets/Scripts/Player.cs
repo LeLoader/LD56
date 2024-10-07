@@ -3,12 +3,13 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] protected Rigidbody2D rb;
-    public bool canMoove;
+    public bool canMoove = true;
 
     protected override void Start()
     {
         base.Start();
         rb = GetComponent<Rigidbody2D>();
+        base.UpdateHealth(this);
     }
 
     void Update()

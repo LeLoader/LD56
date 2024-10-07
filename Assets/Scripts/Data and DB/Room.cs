@@ -7,7 +7,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [Header("References")]
-    public CinemachineVirtualCamera camera;
+    public new CinemachineVirtualCamera camera;
     public RoomData roomData;
     [SerializedDictionary("From Room", "SpawnPoint")]
     public List<RoomEntryPoint> spawnPoints;

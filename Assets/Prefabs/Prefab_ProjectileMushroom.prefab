@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageComponent: {fileID: 7081670635554306775}
   spriteRenderer: {fileID: 4727828873662263946}
-  speed: 10
+  speed: 7
   decreaseSpeed: 1
   decreaseFactor: 30
   destroyAfter: 10

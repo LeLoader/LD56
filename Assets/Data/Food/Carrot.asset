@@ -13,5 +13,18 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   foodName: Carrot
-  sprite: {fileID: 21300000, guid: 19eb92e44138e4c479a7c62221271a44, type: 3}
-  room: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 2dafb5208640b104f99f641923d766c4, type: 3}
+  spawnPosition: {x: 0, y: 0}
+  baseLife: 5
+  speed: 2
+  IsMelee: 1
+  damage: 2
+  attackRange: 2.41
+  attackRangeInterval: 1
+  projectilePrefab: {fileID: 0}
+  attackCount: 2
+  attackWindupTime: 1
+  adjustAttackerColliderTime: 0.1
+  attackTime: 0.5
+  hasRandomOffset: 0
+  randomOffset: 0

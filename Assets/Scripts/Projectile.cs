@@ -19,8 +19,6 @@ public class Projectile : MonoBehaviour
     [ShowIf("decreaseSpeed"), SerializeField]
     float decreaseFactor = 20.0f;
     [SerializeField]
-    Sprite sprite;
-    [SerializeField]
     float destroyAfter = 2.0f;
 
     float initTime;
@@ -28,12 +26,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         initTime = Time.timeSinceLevelLoad;
-
         Destroy(gameObject, destroyAfter);
-
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = sprite;
-
         damageComponent = GetComponent<Damage>();
     }
 

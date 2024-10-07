@@ -14,4 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodName: Strawberry
   sprite: {fileID: 21300000, guid: 925ab5a9481fd5743bcf10bcac191f4c, type: 3}
-  room: {fileID: 0}
+  spawnPosition: {x: 58, y: 5}
+  IsMelee: 0
+  damage: 1
+  attackRange: 10
+  attackRangeInterval: 1
+  projectilePrefab: {fileID: 0}
+  attackCount: 1
+  attackWindupTime: 0.25
+  adjustAttackerColliderTime: 0.75
+  attackTime: 0.25
+  hasRandomOffset: 0
+  randomOffset: 0

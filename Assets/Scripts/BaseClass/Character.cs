@@ -27,7 +27,7 @@ public class Character : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        Debug.Log("OnDeath");
+        //Play death anim
     }
 
     public float GetSpeed()

@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 [RequireComponent(typeof(Collider2D))]
-public class DamagePlayer : MonoBehaviour
+public class Damage : MonoBehaviour
 {
     Collider2D collider2D;
     int damage;
     [SerializeField]
     bool isOneShot;
+    [Tooltip("If true, damage only enemy, if false damage only player"), SerializeField]
+    bool damageEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +22,10 @@ public class DamagePlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Player>(out Player player))
+        if ((collision.CompareTag("Enemy") && damageEnemy) || (collision.CompareTag("Player") && !damageEnemy))
         {
-            player.InflictDamage(damage);
+            collision.TryGetComponent<Character>(out Character character);
+            character.InflictDamage(damage);
             if (isOneShot)
             {
                 Destroy(this);

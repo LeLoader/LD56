@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pan
   cooldown: 2
-  damage: 2
+  attackTime: 0.2
+  damage: 6
   sprite: {fileID: 0}

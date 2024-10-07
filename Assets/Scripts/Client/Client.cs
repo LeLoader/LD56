@@ -74,13 +74,13 @@ public class Client : MonoBehaviour
         this.request = request;
         if (request != null)
         {
-            foreach (FoodData ingredient in request.recipe)
+            foreach (FoodData ingredient in request.recipe.Keys)
             {
                 GameObject ingredientInstance = Instantiate(ingredientPrefab, requestWidget.transform);
 
                 Image image = ingredientInstance.GetComponentsInChildren<Image>().First(component => component.gameObject != ingredientInstance);
                 image.sprite = ingredient.sprite;
-                image.color = new Color(0.3f, 0.3f, 0.3f);
+                // image.color = new Color(0.3f, 0.3f, 0.3f); needs  to be updated on killed
             }
         }
     }

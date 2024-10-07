@@ -10,8 +10,11 @@ public class WeaponData : ScriptableObject
     [Tooltip("Per seconds")]
     public float cooldown;
 
+    [Tooltip("Per seconds")]
+    public float attackTime;
+
     [Tooltip("Per hits")]
-    public float damage;
+    public int damage;
 
     public Sprite sprite;
 }

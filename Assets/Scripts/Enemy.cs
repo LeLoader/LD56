@@ -1,5 +1,4 @@
 using System;
-using UnityEngine.Localization;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEditor;
@@ -11,38 +10,43 @@ public class Enemy : Character
     [SerializeField] CircleCollider2D aggroZone;
     [SerializeField] StateController stateController;
 
-    [Header("General")]
-    public LocalizedString enemyName;
-
     [Header("Gameplay")]
     [SerializeField, Tooltip("The range of the colliders (in meters) that will proc the chase state")]
     float aggroRange = 5;
+    [SerializeField]
+    public FoodData foodData;
 
     bool inFight;
 
     [Header("Gameplay|Attack")]
-    [SerializeField, Tooltip("True if enemy is melee, false if enemy is range")]
+    [ReadOnly, SerializeField, Tooltip("True if enemy is melee, false if enemy is range")]
     bool IsMelee;
-    [Tooltip("Damage PER HIT that will inflict to player")]
+    [ReadOnly, Tooltip("Damage PER HIT that will inflict to player")]
     public int damage;
     [Tooltip("The range (in meters) that will proc the Prepare Attack state")]
     public float attackRange = 10;
     [HideIf("IsMelee"), Tooltip("The interval (in meters) that will be acceptable to proc Prepare Attack state (DISTANCE TO TARGET HAS TO BE INCLUDED IN [attackRange - attackRangeInterval, attackRange + attackRangeInterval])")]
     public float attackRangeInterval = 1;
-    [HideIf("IsMelee"), Tooltip("The prefab to spawn for range enemy")]
+    [ReadOnly, HideIf("IsMelee"), Tooltip("The prefab to spawn for range enemy")]
     public GameObject projectilePrefab;
     [ShowIf("IsMelee"), Tooltip("GameObject containing the attack collider")]
     public GameObject attackColliderWrapper;
     [ShowIf("IsMelee"), Tooltip("The collider for this attack")]
     public Collider2D attackCollider;
-    [Tooltip("The number of attack the enemy will perform"), Min(1)]
+    [ReadOnly, Tooltip("The number of attack the enemy will perform"), Min(1)]
     public int attackCount;
-    [Tooltip("The time (in seconds) when this enemy will stop to charge the attack")]
+    [ReadOnly, Tooltip("The time (in seconds) when this enemy will stop to charge the attack")]
     public float attackWindupTime = 1f;
-    [ShowIf("IsMelee"), Tooltip("The time (in seconds) at which the enemy will target the player. Must be less than attackWindupTime")]
+    [ReadOnly, ShowIf("IsMelee"), Tooltip("The time (in seconds) at which the enemy will target the player. Must be less than attackWindupTime")]
     public float adjustAttackerColliderTime = 0.75f;
-    [Tooltip("The time (in seconds) when the damage collider is active")]
+    [ReadOnly, Tooltip("The time (in seconds) when the damage collider is active")]
     public float attackTime = 0.5f;
+    [ReadOnly, HideIf("IsMelee"), Tooltip("Does the projectile takes a random direction")]
+    public bool hasRandomOffset = false;
+    [ReadOnly, ShowIf("hasRandomOffset"), Tooltip("Max random angle a projectile"), Min(0)]
+    public float randomOffset = 0;
+
+    public static event Action<Enemy> OnEnemyDeath;
 
     protected override void Start()
     {
@@ -50,27 +54,43 @@ public class Enemy : Character
 
         if (aggroZone == null)
         {
-            Debug.LogWarning($"Enemy {enemyName["carrot"]} has no attached aggro zone collider");
+            Debug.LogWarning($"Enemy {foodData.foodName} has no attached aggro zone collider");
+            aggroZone = GetComponent<CircleCollider2D>();
         }
-        aggroZone = GetComponent<CircleCollider2D>(); 
         aggroZone.radius = aggroRange;
         aggroZone.isTrigger = true;
 
         stateController = GetComponent<StateController>();
-        
-        if(attackCollider == null)
+
+        if (attackCollider == null)
         {
-            Debug.LogWarning($"Enemy {enemyName["carrot"]} has no attached attack collider");
+            Debug.LogWarning($"Enemy {foodData.foodName} has no attached attack collider");
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    { 
+    {
         if (collision.TryGetComponent<Player>(out Player player))
         {
             TriggerFight(player);
             Destroy(aggroZone);
         }
+    }
+
+    public void InitFoodData(FoodData foodData)
+    {
+        damage = foodData.damage;
+        attackRange = foodData.attackRange;
+        attackRangeInterval = foodData.attackRangeInterval;
+        projectilePrefab = foodData.projectilePrefab;
+        attackCount = foodData.attackCount;
+        attackWindupTime = foodData.attackWindupTime;
+        adjustAttackerColliderTime = foodData.adjustAttackerColliderTime;
+        attackTime = foodData.attackTime;
+        hasRandomOffset = foodData.hasRandomOffset;
+        randomOffset = foodData.randomOffset;
+        baseLife = foodData.baseLife;
+        speed = foodData.speed;
     }
 
     void TriggerFight(Player player)
@@ -88,16 +108,19 @@ public class Enemy : Character
 
     public void Shoot(Player target, Quaternion direction)
     {
-        GameObject instance = Instantiate(projectilePrefab, transform.position, direction); //transform.position + offset for adjusting where to spawn the projectile
-        instance.GetComponent<Projectile>().damagePlayer.SetDamage(damage);
+        Quaternion randomOffsetQuaternion = Quaternion.Euler(0, 0, 0);
+        if (hasRandomOffset)
+        {
+            randomOffsetQuaternion.eulerAngles = new(0, 0, UnityEngine.Random.Range(0, randomOffset));
+        }
+        GameObject instance = Instantiate(projectilePrefab, transform.position, direction * randomOffsetQuaternion); //transform.position + offset for adjusting where to spawn the projectile
+        instance.GetComponent<Projectile>().damageComponent.SetDamage(damage);
     }
 
     protected override void OnDeath()
     {
         base.OnDeath();
-
-        Debug.Log("Enemy dead");
-        GiveReward();
+        OnEnemyDeath.Invoke(this);
         Destroy(gameObject);
     }
 

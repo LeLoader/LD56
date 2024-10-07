@@ -6,10 +6,17 @@ using UnityEngine;
 [Serializable]
 public class Request
 {
-    public List<FoodData> recipe;
+    public Dictionary<FoodData, FoodState> recipe;
 
-    public Request(List<FoodData> recipe)
+    public Request(Dictionary<FoodData, FoodState> recipe)
     {
         this.recipe = recipe;
     }
+}
+
+public enum FoodState
+{
+    None,
+    Alive,
+    Killed
 }

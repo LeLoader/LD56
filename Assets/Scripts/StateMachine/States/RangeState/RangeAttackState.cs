@@ -16,6 +16,7 @@ public class RangeAttackState : AttackState
 
             self.Shoot(target, direction);
         }
+
     }
 
     protected override void OnUpdate()

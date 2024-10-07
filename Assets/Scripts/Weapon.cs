@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Damage))]
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] WeaponData weaponData;
-    float cooldownTimer;
+    [SerializeField] 
+    WeaponData weaponData;
+    [SerializeField]
+    Collider2D attackCollider;
 
+    float cooldownTimer;
+    float attackTimer;
+    Damage damageComponent;
+    
     void Start()
     {
         if(weaponData == null)
         {
             Debug.LogWarning("Weapon is not initialized");
         }
+        cooldownTimer = weaponData.cooldown;
+        attackTimer = weaponData.attackTime;
+
+        damageComponent = GetComponent<Damage>();
+        damageComponent.SetDamage(weaponData.damage);
     }
 
     // Update is called once per frame
@@ -21,15 +33,26 @@ public class Weapon : MonoBehaviour
         UpdateCooldownTimer();
         if (Input.GetKeyDown(KeyCode.Mouse0) && cooldownTimer <= 0)
         {
-            Attack();
-
-            cooldownTimer = weaponData.cooldown;
+            Attack();      
         }
     }
 
     void Attack()
     {
-        Debug.Log("Attack");
+        attackCollider.enabled = true;
+        StartCoroutine(StopAttack(attackTimer));
+    }
+
+    IEnumerator StopAttack(float afterTime)
+    {
+        float timer = afterTime;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        attackCollider.enabled = false;
+        cooldownTimer = weaponData.cooldown;
     }
 
     void UpdateCooldownTimer()
@@ -37,10 +60,6 @@ public class Weapon : MonoBehaviour
         if (cooldownTimer > 0)
         {
             cooldownTimer -= Time.deltaTime;
-            if (cooldownTimer <= 0)
-            {
-                Debug.Log("CanAttack");
-            }
         }
     }
 }

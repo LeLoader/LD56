@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Knife
   cooldown: 0.5
-  damage: 0.5
+  attackTime: 0.2
+  damage: 3
   sprite: {fileID: 0}

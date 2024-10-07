@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
+    [Header("Life")]
     [SerializeField]
     GameObject lifeWrapper;
     [SerializeField]
@@ -18,16 +20,17 @@ public class UI : MonoBehaviour
     [SerializeField]
     Sprite halfBonusHeart;
 
+    [Header("Food")]
+    [SerializeField]
+    GameObject foodWrapper;
+    [SerializeField]
+    GameObject food_prefab;
+
 
     void Awake()
     {
         Character.OnUpdateHealth += UpdateHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.OnUpdateRequest += UpdateFood;
     }
 
     void UpdateHealth(Character character)
@@ -67,6 +70,26 @@ public class UI : MonoBehaviour
                 Image heartImage = Instantiate(heart_Prefab, lifeWrapper.transform).GetComponent<Image>();
                 heartImage.sprite = halfBonusHeart;
             }
+        }
+    }
+
+    void UpdateFood(Request request)
+    {
+        foreach (Transform transform in foodWrapper.transform) // Clear
+        {
+            Destroy(transform.gameObject);
+        }
+
+
+        foreach (KeyValuePair<FoodData, FoodState> ingredient in request.recipe)
+        {
+            GameObject go = Instantiate(food_prefab, foodWrapper.transform);
+            Image image = go.GetComponentsInChildren<Image>().First(component => component.gameObject != go);
+            image.sprite = ingredient.Key.sprite;
+            if(ingredient.Value == FoodState.Alive)
+            {
+                image.color = new Color(0.3f, 0.3f, 0.3f);
+            }      
         }
     }
 }

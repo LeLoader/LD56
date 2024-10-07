@@ -8,7 +8,7 @@ public class MeleePrepareAttackState : PrepareAttackState
     {
         base.OnEnter();
 
-        self.GetComponentInChildren<DamagePlayer>().SetDamage(self.damage);
+        self.GetComponentInChildren<Damage>().SetDamage(self.damage);
     }
 
     protected override void OnUpdate()

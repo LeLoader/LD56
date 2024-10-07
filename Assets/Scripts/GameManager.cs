@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using Random = UnityEngine.Random;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -17,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Vector2 clientSpawn;
 
+    [SerializeField]
+    Request currentRequest;
+
     public static int orderCount = 0;
 
     [SerializeField]
@@ -29,10 +34,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject clientPrefab;
 
+    [Header("Enemy")]
+    [SerializeField]
+    GameObject meleeEnemy_Prefab;
+    [SerializeField]
+    GameObject rangedEnemy_Prefab;
+
+    public static event Action<Request> OnUpdateRequest;
+
     private void Awake()
     {
         Client.OnNewRequest += OnNewClient;
         Client.OnRequestFullfilled += OnRequestFullfilled;
+        Enemy.OnEnemyDeath += OnEnemyDeath;
     }
 
     private void Update()
@@ -58,10 +72,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void OnEnemyDeath(Enemy enemy)
+    {
+        if (enemy.foodData != null)
+        {
+            if (currentRequest.recipe.ContainsKey(enemy.foodData))
+            {
+                currentRequest.recipe[enemy.foodData] = FoodState.Killed;
+            }
+        }
+        OnUpdateRequest.Invoke(currentRequest);
+    }
+
     void OnRequestFullfilled(Request request)
     {
         Client client = clients.Dequeue();
         client.SetRequest(null);
+        currentRequest = null;
         //Anim happy
         foreach (Vector2 destination in afterQueuePositions)
         {
@@ -71,9 +98,31 @@ public class GameManager : MonoBehaviour
 
     void OnNewClient(Client client)
     {
-        client.SetRequest(CreateDish());
+        Request request = CreateDish();
+        client.SetRequest(request);
+        currentRequest = request;
+        SpawnFood(request);
+        OnUpdateRequest.Invoke(request);
         orderCount++;
         Debug.Log(orderCount);
+    }
+
+    void SpawnFood(Request request)
+    {
+        foreach (FoodData food in request.recipe.Keys)
+        {
+            Enemy enemy;
+            if (food.IsMelee)
+            {
+                enemy = Instantiate(meleeEnemy_Prefab, food.spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+            }
+            else
+            {
+                enemy = Instantiate(rangedEnemy_Prefab, food.spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+            }
+            enemy.foodData = food;
+            enemy.InitFoodData(food);
+        }
     }
 
     Request CreateDish()
@@ -101,7 +150,7 @@ public class GameManager : MonoBehaviour
         }
 
         int ingredientCount = Random.Range(rollMin, rollMax + 1);
-        List<FoodData> ingredients = new();
+        Dictionary<FoodData, FoodState> ingredients = new();
         
         for (int i = 0; i < ingredientCount; i++)
         {
@@ -111,7 +160,7 @@ public class GameManager : MonoBehaviour
             }
 
             int random = Random.Range(0, possibleIngredients.Count);
-            ingredients.Add(possibleIngredients[random]);
+            ingredients.Add(possibleIngredients[random], FoodState.Alive);
             possibleIngredients.RemoveAt(random);
         }
 

@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Food Database
   m_EditorClassIdentifier: 
   foodList:
-  - {fileID: 11400000, guid: 1289d9a4160e61e40afd1cf8f6de1f55, type: 2}
   - {fileID: 11400000, guid: c2e7430044f632d4e884f4830ef62290, type: 2}
-  - {fileID: 11400000, guid: 168c529b1e68a0146841de7db5494166, type: 2}
   - {fileID: 11400000, guid: cb8476baae3999047a7c2104b10848f9, type: 2}
   - {fileID: 11400000, guid: b01da75a2ae1d8e4693d2caf36eb9011, type: 2}
   - {fileID: 11400000, guid: 338d67f18ecc8f44890a7d19bc03ff15, type: 2}

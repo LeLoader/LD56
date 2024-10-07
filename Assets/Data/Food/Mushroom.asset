@@ -15,20 +15,6 @@ MonoBehaviour:
   foodName: Mushroom
   sprite: {fileID: 21300000, guid: 14e525a668e042a4e80301165532d9a3, type: 3}
   spawnPosition: {x: -60, y: -5}
-  idlePose: {fileID: 21300000, guid: cd1e500ae41356745a784ab654028928, type: 3}
-  frontWalkClip: {fileID: 7400000, guid: f9aa5fb64652ff348988f403ba385bb2, type: 2}
-  sideWalkClip: {fileID: 7400000, guid: 488bfd4316c34c549845d0961ac57a1e, type: 2}
-  backWalkClip: {fileID: 7400000, guid: 00ea4aecead32114ca174efe5f82fb82, type: 2}
+  prefab: {fileID: 6781736468396745702, guid: 7c17353699d25d24cad13f0e2673b86f, type: 3}
   baseLife: 7
   speed: 2
-  IsMelee: 0
-  damage: 1
-  attackRange: 5
-  attackRangeInterval: 2
-  projectilePrefab: {fileID: 1702822243722940486, guid: e04fa4d0027cda143b154a03501fedd5, type: 3}
-  attackCount: 15
-  attackWindupTime: 1
-  adjustAttackerColliderTime: 0.75
-  attackTime: 0.5
-  hasRandomOffset: 1
-  randomOffset: 10

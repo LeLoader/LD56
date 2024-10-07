@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (orderCount % 2 == 0) // REGEN
+        if (orderCount % 4 == 0) // REGEN
         {
             player.AddLife(2);
         }
@@ -149,18 +149,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (FoodData food in request.recipe.Keys)
         {
-            Enemy enemy;
-            if (food.IsMelee)
+            Enemy enemy = Instantiate(food.prefab, food.spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+
+            // enemy.foodData = food;
+
+            if(effect != null)
             {
-                enemy = Instantiate(meleeEnemy_Prefab, food.spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+                effect.ApplyEffect();
             }
-            else
-            {
-                enemy = Instantiate(rangedEnemy_Prefab, food.spawnPosition, Quaternion.identity).GetComponent<Enemy>();
-            }
-            enemy.foodData = food;
-            enemy.InitFoodData(food);
-            effect.ApplyEffect();
         }
     }
 

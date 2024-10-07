@@ -13,6 +13,14 @@ public class Client : MonoBehaviour
     [SerializeField]
     GameObject ingredientPrefab;
 
+    [Header("References")]
+    [SerializeField]
+    Animator animator;
+    [SerializeField]
+    Rigidbody2D rb;
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
     [Header("Movement")]
     [SerializeField]
     Vector2 targetPos;
@@ -32,6 +40,12 @@ public class Client : MonoBehaviour
     public static event Action<Client> OnNewRequest;
     public static event Action<Request> OnRequestFullfilled;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,7 +60,7 @@ public class Client : MonoBehaviour
         }
     }
 
-    void Walk(Vector2 destination)
+    void Walk(Vector3 destination)
     {
         if (Vector2.Distance(transform.position, destination) < 0.1f)
         {
@@ -62,10 +76,24 @@ public class Client : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+            animator.SetFloat("xVelocityAbs", 0);
+            animator.SetFloat("yVelocity", 0);
         }
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, destination, Time.deltaTime * speed);
+            Vector2 test = (destination - transform.position).normalized * speed;
+            if (test.x < 0)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                spriteRenderer.flipX = true;
+            }
+            animator.SetFloat("xVelocityAbs", Mathf.Abs(test.x));
+            animator.SetFloat("yVelocity", test.y);
         }
     }
 

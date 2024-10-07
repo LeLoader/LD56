@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Damage))]
 public class Weapon : MonoBehaviour
 {
+    [SerializeField]
+    public AudioSource attacksound;
     [SerializeField] 
     public WeaponData weaponData;
     [SerializeField]
@@ -47,6 +49,7 @@ public class Weapon : MonoBehaviour
         player.IsAttacking = true;
         attackCollider.enabled = true;
         StartCoroutine(StopAttack(attackTimer));
+        attacksound.Play();
     }
 
     public void SetWeapon(WeaponData weaponData)

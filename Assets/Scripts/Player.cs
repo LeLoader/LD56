@@ -1,16 +1,13 @@
 using System;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : Character
 {
     public bool CanMoove = true;
 
-    public AnimatorController animatorRollingpin;
-    public AnimatorController animatorPan;
-    public AnimatorController animatorKnife;
+    public RuntimeAnimatorController animatorRollingpin;
+    public RuntimeAnimatorController animatorPan;
+    public RuntimeAnimatorController animatorKnife;
     public Sprite spriteRollingpin;
     public Sprite spritePan;
     public Sprite spriteKnife;
@@ -29,6 +26,14 @@ public class Player : Character
 
         float xVelocity = Input.GetAxis("Horizontal");
         float yVelocity = Input.GetAxis("Vertical");
+
+        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
+        if (rb.velocity.x < 0) spriteRenderer.flipX = true;
+        else if (rb.velocity.x > 0) spriteRenderer.flipX = false;
+
+        animator.SetBool("IsAttacking", IsAttacking);
 
         if (CanMoove)
         {

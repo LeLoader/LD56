@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Threading;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 [RequireComponent(typeof(Animator)), RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(SpriteRenderer))]
 public class Character : MonoBehaviour
@@ -43,12 +40,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", rb.velocity.y);
 
-        if (rb.velocity.x < 0) spriteRenderer.flipX = true;
-        else if (rb.velocity.x > 0) spriteRenderer.flipX = false;
-        animator.SetBool("IsAttacking", IsAttacking);
     }
 
     public int GetSpeed()

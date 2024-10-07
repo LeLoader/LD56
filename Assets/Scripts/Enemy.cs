@@ -1,7 +1,6 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 
 public class Enemy : Character
@@ -100,6 +99,34 @@ public class Enemy : Character
     {
         base.Update();
 
+        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
+        // Debug.Log("Fish" + foodData.name);
+
+        if (rb.velocity.x < 0)
+        {
+            if (foodData.name == "Fish" || foodData.name == "Mushroom")
+            {
+                spriteRenderer.flipX = false;
+            }
+            else
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
+        else if (rb.velocity.x > 0)
+        {
+            if (foodData.name == "Fish" || foodData.name == "Mushroom")
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
+        }
+        animator.SetBool("IsAttacking", IsAttacking);
     }
 
     public void TriggerFight(Player player)
@@ -128,6 +155,7 @@ public class Enemy : Character
 
     protected override void OnDeath(Character character)
     {
+
         base.OnDeath(this);
         OnEnemyDeath.Invoke(this);
         Destroy(gameObject);
@@ -136,19 +164,5 @@ public class Enemy : Character
     private void GiveReward()
     {
         throw new NotImplementedException();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (!IsMelee)
-        {
-            Handles.color = Color.red;
-            Handles.DrawWireArc(transform.position, Vector3.forward, Vector2.up, 360, attackRange + attackRangeInterval);
-            Handles.DrawWireArc(transform.position, Vector3.forward, Vector2.up, 360, attackRange - attackRangeInterval);
-        }
-        Handles.color = Color.green;
-        Handles.DrawWireArc(transform.position, Vector3.forward, Vector2.up, 360, attackRange);
-        Handles.color = Color.blue;
-        Handles.DrawWireArc(transform.position, Vector3.forward, Vector2.up, 360, aggroRange);
     }
 }

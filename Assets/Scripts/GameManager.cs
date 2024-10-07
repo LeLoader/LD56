@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using Random = UnityEngine.Random;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using System.Linq;
 
@@ -30,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     Queue<Client> clients = new();
+
+    [SerializeField]
+    UI ui;
 
     [SerializeField]
     float spawnCooldown = 2;
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     private void GiveRandomEffect()
     {
         float randomRoll = Random.Range(0f, 1f);
+        Debug.Log("Rolled:" + randomRoll);
         if (orderCount != 0)
         {
             if (orderCount % 3 == 0)
@@ -147,15 +148,14 @@ public class GameManager : MonoBehaviour
                     {
                         int randomIndex = (int)Time.time % 2;
                         cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[randomIndex]);
+                        ui.AddWeapon(weaponToUnlock[randomIndex]);
                         weaponToUnlock.RemoveAt(randomIndex);
                     }
                     else if (weaponToUnlock.Count == 1)
                     {
                         cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[0]);
-                    }
-                    else
-                    {
-                        player.SetSpeed(player.GetSpeed() + 2);
+                        weaponToUnlock.Clear();
+                        ui.AddWeapon(weaponToUnlock[0]);
                     }
                 }
                 else if (0.4 <= randomRoll && randomRoll < 0.5)
@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    player.speed += 2;
+                    player.SetSpeed(player.GetSpeed() + 2);
                 }
             }
         }
@@ -237,15 +237,6 @@ public class GameManager : MonoBehaviour
         }
 
         return new Request(ingredients);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Handles.color = Color.red;
-        foreach (Vector2 position in queuePositions)
-        {
-            Handles.DrawWireDisc(position, Vector3.forward, 0.5f);
-        }
     }
 
     void Retry()

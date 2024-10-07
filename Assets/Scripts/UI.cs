@@ -128,7 +128,7 @@ public class UI : MonoBehaviour
         weaponUI.sprite = weapon.sprite;
     }
 
-    void ToggleMenu()
+    public void ToggleMenu()
     {
         if (menu.activeSelf)
         {
@@ -153,5 +153,10 @@ public class UI : MonoBehaviour
         deathScreen.SetActive(false);
         menu.SetActive(false);
         OnRetry.Invoke();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

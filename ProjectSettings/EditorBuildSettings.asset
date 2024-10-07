@@ -11,12 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 4e1a88e8688816a4b805847f1951d104
-  - enabled: 1
-    path: Assets/Scenes/Garden.unity
-    guid: 90f6779ab2fa38e4dbebc319468841c7
-  - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 97c0ecf10642d5c45b51c018539dc3ea, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: c6b8aa83b6e371243b2b945080328072, type: 2}

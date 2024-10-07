@@ -13,6 +13,7 @@ public class MovementState : State
 
         target = stateController.player;
         self = stateController.enemy;
+        self.spriteRenderer.color = Color.blue;
     }
 
     protected override void OnUpdate()

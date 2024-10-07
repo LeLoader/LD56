@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af6c51c664486b4db838b95e51bd76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  baseLife: 6
+  speed: 2
+  baseLife: 7
   life: 0
   bonusLife: 0
   collisionCollider: {fileID: -5430071921087155376}
@@ -312,17 +312,17 @@ MonoBehaviour:
   foodData: {fileID: 0}
   IsMelee: 0
   damage: 1
-  attackRange: 6
-  attackRangeInterval: 1
+  attackRange: 5
+  attackRangeInterval: 2
   projectilePrefab: {fileID: 1702822243722940486, guid: 893cb5b375977124899a17e7067eaa03, type: 3}
   attackColliderWrapper: {fileID: 3603927040851874012}
   attackCollider: {fileID: 746461627273279234}
-  attackCount: 20
-  attackWindupTime: 0.75
+  attackCount: 15
+  attackWindupTime: 1
   adjustAttackerColliderTime: 0.75
-  attackTime: 0.25
-  hasRandomOffset: 0
-  randomOffset: 0
+  attackTime: 0.5
+  hasRandomOffset: 1
+  randomOffset: 10
 --- !u!114 &7849265770434463388
 MonoBehaviour:
   m_ObjectHideFlags: 0

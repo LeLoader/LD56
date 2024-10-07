@@ -312,15 +312,15 @@ MonoBehaviour:
   foodData: {fileID: 0}
   IsMelee: 0
   damage: 1
-  attackRange: 6
+  attackRange: 3.5
   attackRangeInterval: 1
   projectilePrefab: {fileID: 1702822243722940486, guid: 893cb5b375977124899a17e7067eaa03, type: 3}
   attackColliderWrapper: {fileID: 3603927040851874012}
   attackCollider: {fileID: 746461627273279234}
-  attackCount: 20
-  attackWindupTime: 0.75
+  attackCount: 1
+  attackWindupTime: 0.5
   adjustAttackerColliderTime: 0.75
-  attackTime: 0.25
+  attackTime: 0.5
   hasRandomOffset: 0
   randomOffset: 0
 --- !u!114 &7849265770434463388

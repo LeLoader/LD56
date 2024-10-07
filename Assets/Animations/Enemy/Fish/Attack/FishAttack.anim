@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FishWalkSide
+  m_Name: FishAttack
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,11 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 40bfde740e9db4f4fb1c482208d2dc07, type: 3}
+      value: {fileID: 21300000, guid: 3cb0cac3e5a468248bba6b729ec21978, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 3f8efcc0e444f2f44b7cda48b46570e2, type: 3}
+      value: {fileID: 21300000, guid: 4b0c06af7a33b5940a076e3a4f7dfe3b, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: 40bfde740e9db4f4fb1c482208d2dc07, type: 3}
+      value: {fileID: 21300000, guid: df10c2b2a0ac0604b930f51cf7f62cc8, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 3cb0cac3e5a468248bba6b729ec21978, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,15 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 40bfde740e9db4f4fb1c482208d2dc07, type: 3}
-    - {fileID: 21300000, guid: 3f8efcc0e444f2f44b7cda48b46570e2, type: 3}
-    - {fileID: 21300000, guid: 40bfde740e9db4f4fb1c482208d2dc07, type: 3}
+    - {fileID: 21300000, guid: 3cb0cac3e5a468248bba6b729ec21978, type: 3}
+    - {fileID: 21300000, guid: 4b0c06af7a33b5940a076e3a4f7dfe3b, type: 3}
+    - {fileID: 21300000, guid: df10c2b2a0ac0604b930f51cf7f62cc8, type: 3}
+    - {fileID: 21300000, guid: 3cb0cac3e5a468248bba6b729ec21978, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.51666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

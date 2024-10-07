@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class RepositionState : MovementState
 {
+    protected override void OnEnter()
+    {
+        base.OnEnter();
+
+    }
+
     protected override void OnUpdate()
     {
         base.OnUpdate();

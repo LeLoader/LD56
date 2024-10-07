@@ -62,7 +62,7 @@ public class Enemy : Character
 
         stateController = GetComponent<StateController>();
 
-        if (attackCollider == null)
+        if (attackCollider == null && IsMelee)
         {
             Debug.LogWarning($"Enemy {foodData.foodName} has no attached attack collider");
         }

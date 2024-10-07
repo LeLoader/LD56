@@ -18,7 +18,10 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-        collisionCollider = GetComponent<CircleCollider2D>();
+        if(collisionCollider == null)
+        {
+            collisionCollider = GetComponent<CapsuleCollider2D>();
+        }
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
          

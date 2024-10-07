@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4792082006796378958}
   - component: {fileID: 2509755009677172875}
+  - component: {fileID: 289389071350467218}
   m_Layer: 0
   m_Name: TriggerCollider
   m_TagString: Untagged
@@ -160,6 +161,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!114 &289389071350467218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180212150961848789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5284711297797764a99ef18fe4844ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
 --- !u!1 &6781736468396745702
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +304,7 @@ MonoBehaviour:
   collisionCollider: {fileID: -5430071921087155376}
   spriteRenderer: {fileID: 4250915680195631971}
   animator: {fileID: 0}
-  aggroZone: {fileID: 2509755009677172875}
+  aggroZone: {fileID: 289389071350467218}
   stateController: {fileID: 7849265770434463388}
   aggroRange: 5
   foodData: {fileID: 0}

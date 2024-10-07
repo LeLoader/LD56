@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Enemy : Character
 {
     [Header("References")]
-    [SerializeField] CircleCollider2D aggroZone;
+    [SerializeField] AggroZone aggroZone;
     [SerializeField] StateController stateController;
 
     [Header("Gameplay")]
@@ -54,26 +54,18 @@ public class Enemy : Character
 
         if (aggroZone == null)
         {
-            Debug.LogWarning($"Enemy {foodData.foodName} has no attached aggro zone collider");
-            aggroZone = GetComponent<CircleCollider2D>();
+            aggroZone = GetComponentInChildren<AggroZone>();
         }
-        aggroZone.radius = aggroRange;
-        aggroZone.isTrigger = true;
+        else
+        {
+            aggroZone.radius = aggroRange;
+        }
 
         stateController = GetComponent<StateController>();
 
         if (attackCollider == null && IsMelee)
         {
             Debug.LogWarning($"Enemy {foodData.foodName} has no attached attack collider");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<Player>(out Player player))
-        {
-            TriggerFight(player);
-            Destroy(aggroZone);
         }
     }
 
@@ -93,7 +85,7 @@ public class Enemy : Character
         speed = foodData.speed;
     }
 
-    void TriggerFight(Player player)
+    public void TriggerFight(Player player)
     {
         stateController.player = player;
         if (IsMelee)

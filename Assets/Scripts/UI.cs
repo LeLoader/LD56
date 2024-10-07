@@ -37,10 +37,10 @@ public class UI : MonoBehaviour
     {
         if (character.GetComponent<Player>())
         {
-            int fullRedHeartCount = character.life / 2;
-            bool hasHalfRedHeart = character.life % 2 == 1;
-            int fullBonusHeartCount = character.bonusLife / 2;
-            bool hasHalfBonusHeart = character.bonusLife % 2 == 1;
+            int fullRedHeartCount = character.GetLife() / 2;
+            bool hasHalfRedHeart = character.GetLife() % 2 == 1;
+            int fullBonusHeartCount = character.GetBonusLife() / 2;
+            bool hasHalfBonusHeart = character.GetBonusLife() % 2 == 1;
 
             foreach (Transform transform in lifeWrapper.transform) // Clear
             {
@@ -79,7 +79,6 @@ public class UI : MonoBehaviour
         {
             Destroy(transform.gameObject);
         }
-
 
         foreach (KeyValuePair<FoodData, FoodState> ingredient in request.recipe)
         {

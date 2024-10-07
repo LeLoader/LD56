@@ -66,6 +66,11 @@ public class Enemy : Character
         if (attackCollider == null && IsMelee)
         {
             Debug.LogWarning($"Enemy {foodData.foodName} has no attached attack collider");
+        } 
+
+        if(foodData != null)
+        {
+            InitFoodData(foodData);
         }
     }
 
@@ -83,6 +88,17 @@ public class Enemy : Character
         randomOffset = foodData.randomOffset;
         baseLife = foodData.baseLife;
         speed = foodData.speed;
+
+        AnimatorOverrideController animatorOverrideController = new(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = animatorOverrideController;
+        animatorOverrideController["WalkFront"] = foodData.frontWalkClip;
+        animatorOverrideController["WalkBack"] = foodData.backWalkClip;
+        animatorOverrideController["WalkSide"] = foodData.sideWalkClip;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
     }
 
     public void TriggerFight(Player player)

@@ -249,7 +249,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 395271cce13f6464e8ab061677d9565b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2ff173d2384d9a24e9792e576a398769, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -365,7 +365,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WalkX
+  m_Name: WalkSide
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -381,7 +381,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
+  m_Motion: {fileID: 7400000, guid: 239a3ed89a0ab614b81510f6cec8ce12, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

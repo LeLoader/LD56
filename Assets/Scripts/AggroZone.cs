@@ -22,24 +22,13 @@ public class AggroZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TriggerEnter");
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("It's a player");
             if (collision.TryGetComponent<Player>(out Player player))
             {
-                Debug.Log("and he has player comp");
                 GetComponentInParent<Enemy>().TriggerFight(player);
                 collider.enabled = false;
             }
-            else
-            {
-                Debug.Log("and he doesn't have player comp");
-            }
-        }
-        else
-        {
-            Debug.Log("It's not a player");
         }
     }
 }

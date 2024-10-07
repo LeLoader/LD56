@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 9092749510627721339}
   - component: {fileID: 7849265770434463388}
   - component: {fileID: -5430071921087155376}
+  - component: {fileID: 1847740843062241747}
   m_Layer: 0
   m_Name: Prefab_MeleeEnemy
   m_TagString: Enemy
@@ -252,13 +253,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 41650d5304213854880eae53b4f6bec9, type: 3}
+  m_SortingOrder: 8
+  m_Sprite: {fileID: 21300000, guid: d29b62067b0dd7d44a241588d684aecf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2988281, y: 1.5136719}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -274,7 +275,7 @@ Animator:
   m_GameObject: {fileID: 6781736468396745702}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e56d09bd2101c2478656bc2cdbde655, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -303,14 +304,15 @@ MonoBehaviour:
   bonusLife: 0
   collisionCollider: {fileID: -5430071921087155376}
   spriteRenderer: {fileID: 4250915680195631971}
-  animator: {fileID: 0}
+  animator: {fileID: 5499063858449616163}
+  rb: {fileID: 1847740843062241747}
   aggroZone: {fileID: 289389071350467218}
   stateController: {fileID: 7849265770434463388}
   aggroRange: 5
   foodData: {fileID: 0}
   IsMelee: 1
   damage: 1
-  attackRange: 6
+  attackRange: 2
   attackRangeInterval: 1
   projectilePrefab: {fileID: 1702822243722940486, guid: 893cb5b375977124899a17e7067eaa03, type: 3}
   attackColliderWrapper: {fileID: 3603927040851874012}
@@ -370,6 +372,33 @@ CapsuleCollider2D:
   m_Offset: {x: -0.039075583, y: 0.021559}
   m_Size: {x: 0.4684567, y: 0.956882}
   m_Direction: 0
+--- !u!50 &1847740843062241747
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781736468396745702}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &9190619008987657951
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +471,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0

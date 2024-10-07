@@ -19,7 +19,6 @@ public class PrepareAttackState : State
         self = stateController.enemy;
 
         timer = 0;
-        self.spriteRenderer.color = Color.yellow;
         hasRepositionned = false;
     }
 

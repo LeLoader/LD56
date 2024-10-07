@@ -12,6 +12,12 @@ public class FoodData : ScriptableObject
     public Sprite sprite;
     public Vector2 spawnPosition;
 
+    [Header("Animation")]
+    public Sprite idlePose;
+    public AnimationClip frontWalkClip;
+    public AnimationClip sideWalkClip;
+    public AnimationClip backWalkClip;
+
     [Header("Gameplay")]
     public int baseLife;
     public int speed;

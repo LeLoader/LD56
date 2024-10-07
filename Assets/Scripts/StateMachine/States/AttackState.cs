@@ -20,7 +20,6 @@ public class AttackState : State
         attackCount = self.attackCount;
 
         timer = 0;
-        self.spriteRenderer.color = Color.red;
     }
 
     protected override void OnUpdate()

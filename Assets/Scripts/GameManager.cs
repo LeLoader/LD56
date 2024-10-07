@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
     Vector2 clientSpawn;
 
     [SerializeField]
+    Player player;
+
+    [Header("Effects")]
+    [SerializeField]
+    Dictionary<Effect, float> bonusEffect;
+    [SerializeField]
+    Dictionary<Effect, float> malusEffect;
+    Effect nextEffect;
+
+    [SerializeField]
     Request currentRequest;
 
     public static int orderCount = 0;
@@ -86,6 +96,7 @@ public class GameManager : MonoBehaviour
 
     void OnRequestFullfilled(Request request)
     {
+        nextEffect = GiveRandomEffect();
         Client client = clients.Dequeue();
         client.SetRequest(null);
         currentRequest = null;
@@ -96,17 +107,45 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private Effect GiveRandomEffect()
+    {
+        float randomRoll = Random.Range(0f, 1f);
+        Effect effect = new();
+        if (orderCount % 3 == 0)
+        {
+            foreach (KeyValuePair<Effect, float> kv in bonusEffect)
+            {
+
+            }
+        }
+        else
+        {
+            // Bonus
+            foreach (KeyValuePair<Effect, float> kv in bonusEffect)
+            {
+
+            }
+        }
+
+        if (orderCount % 2 == 0) // REGEN
+        {
+            player.AddLife(2);
+        }
+
+        return effect;
+    }
+
     void OnNewClient(Client client)
     {
         Request request = CreateDish();
         client.SetRequest(request);
         currentRequest = request;
-        SpawnFood(request);
+        SpawnFood(request, nextEffect);
         OnUpdateRequest.Invoke(request);
         orderCount++;
     }
 
-    void SpawnFood(Request request)
+    void SpawnFood(Request request, Effect effect)
     {
         foreach (FoodData food in request.recipe.Keys)
         {
@@ -121,6 +160,7 @@ public class GameManager : MonoBehaviour
             }
             enemy.foodData = food;
             enemy.InitFoodData(food);
+            effect.ApplyEffect();
         }
     }
 

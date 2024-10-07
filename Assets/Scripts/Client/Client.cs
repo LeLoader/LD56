@@ -42,7 +42,7 @@ public class Client : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && HasReachedTargetPos && IsPlayerNearby)
         {
-            OnRequestFullfilled.Invoke(request);
+            TryFullfillRequest();
         }
     }
 
@@ -83,6 +83,19 @@ public class Client : MonoBehaviour
                 // image.color = new Color(0.3f, 0.3f, 0.3f); needs  to be updated on killed
             }
         }
+    }
+
+    void TryFullfillRequest()
+    {
+        foreach(FoodState state in request.recipe.Values)
+        {
+            if(state != FoodState.Killed)
+            {
+                // Animation pas content
+                return;
+            }
+        }
+        OnRequestFullfilled.Invoke(request);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -16,35 +16,35 @@ public class Enemy : Character
     [SerializeField]
     public FoodData foodData;
 
-    bool inFight;
-
     [Header("Gameplay|Attack")]
-    [ReadOnly, SerializeField, Tooltip("True if enemy is melee, false if enemy is range")]
+    [SerializeField, Tooltip("True if enemy is melee, false if enemy is range")]
     bool IsMelee;
-    [ReadOnly, Tooltip("Damage PER HIT that will inflict to player")]
+    [Tooltip("Damage PER HIT that will inflict to player")]
     public int damage;
     [Tooltip("The range (in meters) that will proc the Prepare Attack state")]
     public float attackRange = 10;
     [HideIf("IsMelee"), Tooltip("The interval (in meters) that will be acceptable to proc Prepare Attack state (DISTANCE TO TARGET HAS TO BE INCLUDED IN [attackRange - attackRangeInterval, attackRange + attackRangeInterval])")]
     public float attackRangeInterval = 1;
-    [ReadOnly, HideIf("IsMelee"), Tooltip("The prefab to spawn for range enemy")]
+    [HideIf("IsMelee"), Tooltip("The prefab to spawn for range enemy")]
     public GameObject projectilePrefab;
     [ShowIf("IsMelee"), Tooltip("GameObject containing the attack collider")]
     public GameObject attackColliderWrapper;
     [ShowIf("IsMelee"), Tooltip("The collider for this attack")]
     public Collider2D attackCollider;
-    [ReadOnly, Tooltip("The number of attack the enemy will perform"), Min(1)]
+    [Tooltip("The number of attack the enemy will perform"), Min(1)]
     public int attackCount;
-    [ReadOnly, Tooltip("The time (in seconds) when this enemy will stop to charge the attack")]
+    [Tooltip("The time (in seconds) when this enemy will stop to charge the attack")]
     public float attackWindupTime = 1f;
-    [ReadOnly, ShowIf("IsMelee"), Tooltip("The time (in seconds) at which the enemy will target the player. Must be less than attackWindupTime")]
+    [ShowIf("IsMelee"), Tooltip("The time (in seconds) at which the enemy will target the player. Must be less than attackWindupTime")]
     public float adjustAttackerColliderTime = 0.75f;
-    [ReadOnly, Tooltip("The time (in seconds) when the damage collider is active")]
+    [Tooltip("The time (in seconds) when the damage collider is active")]
     public float attackTime = 0.5f;
-    [ReadOnly, HideIf("IsMelee"), Tooltip("Does the projectile takes a random direction")]
+    [HideIf("IsMelee"), Tooltip("Does the projectile takes a random direction")]
     public bool hasRandomOffset = false;
-    [ReadOnly, ShowIf("hasRandomOffset"), Tooltip("Max random angle a projectile"), Min(0)]
+    [ShowIf("hasRandomOffset"), Tooltip("Max random angle a projectile")]
     public float randomOffset = 0;
+
+    bool inFight;
 
     public static event Action<Enemy> OnEnemyDeath;
 
@@ -76,7 +76,7 @@ public class Enemy : Character
 
     public void InitFoodData(FoodData foodData)
     {
-        damage = foodData.damage;
+        /* damage = foodData.damage;
         attackRange = foodData.attackRange;
         attackRangeInterval = foodData.attackRangeInterval;
         projectilePrefab = foodData.projectilePrefab;
@@ -91,14 +91,15 @@ public class Enemy : Character
 
         AnimatorOverrideController animatorOverrideController = new(animator.runtimeAnimatorController);
         animator.runtimeAnimatorController = animatorOverrideController;
-        animatorOverrideController["WalkFront"] = foodData.frontWalkClip;
-        animatorOverrideController["WalkBack"] = foodData.backWalkClip;
-        animatorOverrideController["WalkSide"] = foodData.sideWalkClip;
+        animatorOverrideController["Carrot Walk Front"] = foodData.frontWalkClip;
+        animatorOverrideController["Carrot Walk Back"] = foodData.backWalkClip;
+        animatorOverrideController["Carrot Walk Side"] = foodData.sideWalkClip;*/     
     }
 
     protected override void Update()
     {
         base.Update();
+
     }
 
     public void TriggerFight(Player player)

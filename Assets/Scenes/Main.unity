@@ -887,6 +887,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4250915680195631971, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4907042731166681016, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -60
@@ -930,6 +934,10 @@ PrefabInstance:
     - target: {fileID: 6781736468396745702, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
       propertyPath: m_Name
       value: Prefab_RangedEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781736468396745702, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9092749510627721339, guid: 165167ea60c88c64089bff1958d9b7e5, type: 3}
       propertyPath: foodData
@@ -1797,14 +1805,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodDatabase: {fileID: 11400000, guid: fb07e145c01813b4fa32a5642e60650d, type: 2}
-  maxClientInQueue: 0
+  maxClientInQueue: 2
   queuePositions:
-  - {x: 8.75, y: -1.08}
-  - {x: 7.49, y: -1.08}
+  - {x: 8.75, y: -1}
+  - {x: 7.5, y: -1}
   afterQueuePositions:
-  - {x: 7.49, y: -10}
-  clientSpawn: {x: 15, y: 0}
-  player: {fileID: 0}
+  - {x: 7.5, y: -10}
+  clientSpawn: {x: 10, y: -1}
+  player: {fileID: 1870254815}
   bonusEffect: []
   malusEffect: []
   spawnCooldown: 2
@@ -3610,6 +3618,10 @@ PrefabInstance:
     - target: {fileID: 6145571674899063134, guid: a8815cf862dc28b4eba298d188fb5f24, type: 3}
       propertyPath: canMoove
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9152181636175777913, guid: a8815cf862dc28b4eba298d188fb5f24, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

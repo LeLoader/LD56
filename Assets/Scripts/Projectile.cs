@@ -33,9 +33,13 @@ public class Projectile : MonoBehaviour
     private void Update()
     {
         transform.position += speed * Time.deltaTime * transform.up;
-        if(speed > 0.1 && decreaseSpeed)
+        if(speed > 0.2 && decreaseSpeed)
         {
             speed -= Time.deltaTime * (Time.timeSinceLevelLoad - initTime) * decreaseFactor;
+        }
+        else if (speed < 0)
+        {
+            speed = 0;
         }
     }
 }

@@ -21,9 +21,6 @@ public class Player : Character
         if (canMoove)
         {
             rb.velocity = Vector2.ClampMagnitude(new Vector2(xVelocity * speed, yVelocity * speed), speed);
-
-            if (xVelocity < 0) spriteRenderer.flipX = true;
-            else if (xVelocity > 0) spriteRenderer.flipX = false;
         }
     }
 

@@ -21,12 +21,19 @@ public class RoomEntryPoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        playerInCollider = true;
+        if (collision.CompareTag("Player"))
+        {
+            playerInCollider = true;
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        playerInCollider = false;
+        if (collision.CompareTag("Player"))
+        {
+            playerInCollider = false;
+        }  
     }
 
     private void Update()

@@ -40,6 +40,9 @@ public class Character : MonoBehaviour
     {
         animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
         animator.SetFloat("yVelocity", rb.velocity.y);
+
+        if (rb.velocity.x < 0) spriteRenderer.flipX = true;
+        else if (rb.velocity.x > 0) spriteRenderer.flipX = false;
     }
 
     public float GetSpeed()

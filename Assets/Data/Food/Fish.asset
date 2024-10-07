@@ -13,22 +13,8 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   foodName: Fish
-  sprite: {fileID: 21300000, guid: 2c3e85a497dd4fe48bbdade9cf5158b7, type: 3}
+  sprite: {fileID: 21300000, guid: 819d55586c6ba9b43bd55bde7473e396, type: 3}
   spawnPosition: {x: -47, y: 0}
-  idlePose: {fileID: 21300000, guid: 3cb0cac3e5a468248bba6b729ec21978, type: 3}
-  frontWalkClip: {fileID: 0}
-  sideWalkClip: {fileID: 7400000, guid: 45cdb2e3c7ca7cd44a398779792c0b77, type: 2}
-  backWalkClip: {fileID: 0}
+  prefab: {fileID: 6781736468396745702, guid: 86c98a1fe8418d6429829589d7da81da, type: 3}
   baseLife: 10
   speed: 4
-  IsMelee: 1
-  damage: 2
-  attackRange: 1.5
-  attackRangeInterval: 1
-  projectilePrefab: {fileID: 0}
-  attackCount: 1
-  attackWindupTime: 1
-  adjustAttackerColliderTime: 0.5
-  attackTime: 0.75
-  hasRandomOffset: 0
-  randomOffset: 0

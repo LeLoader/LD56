@@ -64,7 +64,6 @@ public class Character : MonoBehaviour
         }
 
         OnUpdateHealth.Invoke(this);
-        Debug.Log($"Ouch! {this} took {damage} damage! He has now {life} hp left");
 
         if (life <= 0)
         {
@@ -74,21 +73,29 @@ public class Character : MonoBehaviour
 
     public void AddLife(int amount)
     {
+        OnUpdateHealth.Invoke(this);
         life += amount;
 
         if (life > baseLife)
         {
             life = baseLife;
         }
+
+        if (life <= 0)
+        {
+            OnDeath();
+        }
     }
 
     public void AddBonusLife(int amount)
     {
+        OnUpdateHealth.Invoke(this);
         bonusLife += amount;
     }
 
     public void ModifyBaseLife(int amount)
     {
+        OnUpdateHealth.Invoke(this);
         baseLife = amount;
     }
 

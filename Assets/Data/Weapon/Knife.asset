@@ -17,3 +17,4 @@ MonoBehaviour:
   attackTime: 0.2
   damage: 3
   sprite: {fileID: 21300000, guid: 3b32b49b7afc6d8448452c0498f6f2ed, type: 3}
+  hitSound: {fileID: 8300000, guid: 2b8c3943b6478e74ca3c123d1d1966cf, type: 3}

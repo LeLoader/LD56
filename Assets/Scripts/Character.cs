@@ -25,7 +25,6 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-        UI.OnRetry += Retry;
         if(collisionCollider == null)
         {
             collisionCollider = GetComponent<CapsuleCollider2D>();
@@ -77,12 +76,12 @@ public class Character : MonoBehaviour
             life -= damage;
         }
 
-        OnUpdateHealth.Invoke(this);
-
         if (life <= 0)
         {
             OnDeath(this);
         }
+
+        UpdateHealth(this);
         StartCoroutine(RedFlash(this));
     }
 
@@ -99,7 +98,6 @@ public class Character : MonoBehaviour
 
     public void AddLife(int amount)
     {
-        OnUpdateHealth.Invoke(this);
         life += amount;
 
         if (life > baseLife)
@@ -111,18 +109,20 @@ public class Character : MonoBehaviour
         {
             OnDeath(this);
         }
+
+        UpdateHealth(this);
     }
 
     public void AddBonusLife(int amount)
     {
-        OnUpdateHealth.Invoke(this);
         bonusLife += amount;
+        UpdateHealth(this);
     }
 
     public void ModifyBaseLife(int amount)
-    {
-        OnUpdateHealth.Invoke(this);
+    { 
         baseLife = amount;
+        UpdateHealth(this);
     }
 
     public int GetLife()
@@ -155,13 +155,5 @@ public class Character : MonoBehaviour
             }
             OnPlayerDeath.Invoke(this);
         }
-    }
-
-    void Retry()
-    {
-        life = baseLife;
-        speed = baseSpeed;
-        transform.position = Vector2.zero;
-        OnUpdateHealth.Invoke(this);
     }
 }

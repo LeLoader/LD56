@@ -72,10 +72,12 @@ public class Weapon : MonoBehaviour
             player.animator.runtimeAnimatorController = player.animatorKnife;
         }
         OnUpdateWeapon.Invoke(weaponData);
+        attacksound.clip = weaponData.hitSound;
     }
 
     IEnumerator StopAttack(float afterTime)
     {
+        cooldownTimer = weaponData.cooldown;
         float timer = afterTime;
         while (timer > 0)
         {
@@ -84,7 +86,6 @@ public class Weapon : MonoBehaviour
         }
         attackCollider.enabled = false;
         player.IsAttacking = false;
-        cooldownTimer = weaponData.cooldown;
     }
 
     void UpdateCooldownTimer()

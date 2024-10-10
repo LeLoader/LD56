@@ -14,6 +14,11 @@ public class Player : Character
 
     public static event Action ToggleMenu;
 
+    private void Awake()
+    {
+        UI.OnRetry += Retry;
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -44,5 +49,13 @@ public class Player : Character
         {
             ToggleMenu.Invoke();
         }
-    } 
+    }
+
+    void Retry()
+    {
+        life = baseLife;
+        speed = baseSpeed;
+        transform.position = Vector2.zero;
+        base.UpdateHealth(this);
+    }
 }

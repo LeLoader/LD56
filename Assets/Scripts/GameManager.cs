@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     GameObject meleeEnemy_Prefab;
     [SerializeField]
     GameObject rangedEnemy_Prefab;
+    [SerializeField]
+    AudioSource deathSound;
 
     public WeaponData[] weaponToUnlockImmuable;
     public List<WeaponData> weaponToUnlock;
@@ -55,7 +57,14 @@ public class GameManager : MonoBehaviour
         Client.OnNewRequest += OnNewClient;
         Client.OnRequestFullfilled += OnRequestFullfilled;
         Enemy.OnEnemyDeath += OnEnemyDeath;
+        Player.OnPlayerDeath += UpdateOrderCount;
         UI.OnRetry += Retry;
+        weaponToUnlock = weaponToUnlockImmuable.ToList();
+    }
+
+    private void UpdateOrderCount(Character character)
+    {
+        ui.orderCount.text = (orderCount - 1).ToString();
     }
 
     private void Update()
@@ -79,10 +88,18 @@ public class GameManager : MonoBehaviour
                 spawnCountdown -= Time.deltaTime;
             }
         }
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+             GiveRandomEffect();
+        }
+#endif
     }
 
     void OnEnemyDeath(Enemy enemy)
     {
+        deathSound.Play();
         if (enemy.foodData != null && currentRequest.recipe != null)
         {
             if (currentRequest.recipe.ContainsKey(enemy.foodData))
@@ -108,12 +125,11 @@ public class GameManager : MonoBehaviour
     private void GiveRandomEffect()
     {
         float randomRoll = Random.Range(0f, 1f);
-        Debug.Log("Rolled:" + randomRoll);
         if (orderCount != 0)
         {
             if (orderCount % 3 == 0)
             {
-                if (randomRoll < 0.1) // new weapon
+                if (randomRoll < 0.1)
                 {
                     player.ModifyBaseLife(player.baseLife - 1);
                 }
@@ -154,8 +170,8 @@ public class GameManager : MonoBehaviour
                     else if (weaponToUnlock.Count == 1)
                     {
                         cycleWeapon.unlockedWeaponList.Add(weaponToUnlock[0]);
-                        weaponToUnlock.Clear();
                         ui.AddWeapon(weaponToUnlock[0]);
+                        weaponToUnlock.Clear();     
                     }
                 }
                 else if (0.4 <= randomRoll && randomRoll < 0.5)
@@ -209,15 +225,15 @@ public class GameManager : MonoBehaviour
                 rollMax = 1;
                 break;
             case < 5:
-                rollMax = 3;
+                rollMax = 2;
                 break;
             case < 10:
                 rollMin = 2;
-                rollMax = 5;
+                rollMax = 3;
                 break;
             case >= 10:
                 rollMin = 3;
-                rollMax = 6;
+                rollMax = 4;
                 break;
         }
 

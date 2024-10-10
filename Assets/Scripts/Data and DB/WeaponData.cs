@@ -17,4 +17,6 @@ public class WeaponData : ScriptableObject
     public int damage;
 
     public Sprite sprite;
+
+    public AudioClip hitSound;
 }

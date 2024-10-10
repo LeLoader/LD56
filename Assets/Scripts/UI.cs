@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +41,8 @@ public class UI : MonoBehaviour
     GameObject menu;
     [SerializeField]
     GameObject deathScreen;
+    [SerializeField]
+    public TMP_Text orderCount;
 
     public static event Action OnRetry;
 

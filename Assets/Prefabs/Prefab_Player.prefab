@@ -148,15 +148,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710e6abc25ff2bf41bf4102e7dc436ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  baseSpeed: 4
+  speed: 4
   baseLife: 10
+  initLife: 10
   life: 0
   bonusLife: 0
   collisionCollider: {fileID: 5515917468344356866}
   spriteRenderer: {fileID: 9152181636175777913}
   animator: {fileID: 3479557051544774123}
   rb: {fileID: 1641880661705110779}
-  canMoove: 0
+  IsAttacking: 0
+  CanMoove: 1
+  animatorRollingpin: {fileID: 0}
+  animatorPan: {fileID: 0}
+  animatorKnife: {fileID: 0}
+  spriteRollingpin: {fileID: 0}
+  spritePan: {fileID: 0}
+  spriteKnife: {fileID: 0}
 --- !u!70 &5515917468344356866
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
